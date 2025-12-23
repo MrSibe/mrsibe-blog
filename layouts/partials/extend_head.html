@@ -10,3 +10,8 @@ var _hmt = _hmt || [];
 })();
 </script>
 {{- end }}
+
+{{- /* Ahrefs Web Analytics */ -}}
+{{- if hugo.IsProduction | or (eq site.Params.env "production") }}
+<script src="https://analytics.ahrefs.com/analytics.js" data-key="+l1xGejnsYdzsQ6GXnMjjw" async></script>
+{{- end }}
