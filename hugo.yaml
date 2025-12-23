@@ -1,3 +1,175 @@
-baseURL: https://example.org/
-languageCode: en-us
-title: My New Hugo Site
+baseURL: https://mrsibe.github.io/
+languageCode: zh-CN
+title: 西贝的代码宇宙
+theme: ["PaperMod"]
+
+# 分页配置
+pagination:
+  pagerSize: 10
+
+# 多语言支持
+defaultContentLanguage: zh
+languages:
+  zh:
+    languageName: "简体中文"
+    weight: 1
+    params:
+      subtitle: "在星辰与字节之间，写下一行属于宇宙的代码。"
+
+# 分类法配置
+taxonomies:
+  category: categories
+  tag: tags
+  archive: archives
+
+# URL 结构配置 - 简洁格式
+permalinks:
+  posts: /:slug/
+
+# 输出格式（用于搜索功能）
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+# Markdown 渲染器配置
+markup:
+  goldmark:
+    renderer:
+      unsafe: true  # 允许 HTML
+  highlight:
+    anchorLineNos: false
+    codeFences: true
+    guessSyntax: false
+    lineNos: true
+    lineNumbersInTable: true
+    noClasses: false
+    style: monokai
+
+# 菜单配置
+menu:
+  main:
+    - identifier: home
+      name: 首页
+      url: /
+      weight: 1
+    - identifier: archives
+      name: 归档
+      url: /archives/
+      weight: 2
+    - identifier: categories
+      name: 分类
+      url: /categories/
+      weight: 3
+    - identifier: tags
+      name: 标签
+      url: /tags/
+      weight: 4
+    - identifier: search
+      name: 搜索
+      url: /search/
+      weight: 5
+    - identifier: about
+      name: 关于
+      url: /about/
+      weight: 6
+    - identifier: links
+      name: 友链
+      url: /links/
+      weight: 7
+
+# PaperMod 主题参数
+params:
+  env: production
+  title: 西贝的代码宇宙
+  description: |
+    这里是西贝的个人博客——一个计算机学生的成长轨迹，也是一片藏在代码里的宇宙。
+    从算法到天文，从调试到观星，我记录每一次调试成功的光，也捕捉每一次仰望星空的瞬间。
+  keywords:
+    - 西贝
+    - 啊啊啊啊啊西贝
+    - 计算机学习博客
+    - 编程学习
+    - 天文爱好者
+    - 代码宇宙
+    - 学生开发者
+    - 技术成长记录
+    - 算法笔记
+    - 观星日常
+  author: 啊啊啊啊啊西贝
+
+  # 主题模式
+  defaultTheme: auto  # auto, light, dark
+  disableThemeToggle: false
+
+  # 日期格式
+  DateFormat: "2006-01-02"
+
+  # 显示设置
+  ShowReadingTime: true
+  ShowShareButtons: true
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowWordCount: true
+  ShowRssButtonInSectionTermList: true
+  UseHugoToc: true
+  disableSpecial1stPost: false
+  disableScrollToTop: false
+  comments: false
+  hidemeta: false
+  hideSummary: false
+  showtoc: true
+  tocopen: false
+
+  # 首页 Home-Info 模式配置
+  homeInfoParams:
+    Title: "西贝的博客小屋——西贝茶馆 👋"
+    Content: |
+      欢迎来到我的代码宇宙！
+
+      这里记录着一个计算机学生的成长轨迹。
+
+      白天调试 BUG，晚上调试星光。
+
+      在星辰与字节之间，写下一行属于宇宙的代码。
+
+  # 社交图标
+  socialIcons:
+    - name: github
+      url: "https://github.com/mrsibe"
+    - name: rss
+      url: "/index.xml"
+
+  # 网站图标
+  assets:
+    favicon: "/favicon.ico"
+    favicon16x16: "/favicon-16x16.png"
+    favicon32x32: "/favicon-32x32.png"
+    apple_touch_icon: "/apple-touch-icon.png"
+
+  # Label 配置（页眉左侧）
+  label:
+    text: "西贝的代码宇宙"
+    icon: /images/fluid.png
+    iconHeight: 35
+
+  # Cover 图片设置
+  cover:
+    hidden: false
+    hiddenInList: false
+    hiddenInSingle: false
+    responsiveImages: true
+    linkFullImages: true
+
+# Google Analytics
+googleAnalytics: G-BZZVEEJVCS
+
+# 隐私设置
+privacy:
+  googleAnalytics:
+    anonymizeIP: false
+    disable: false
+    respectDoNotTrack: false
+    useSessionStorage: false
