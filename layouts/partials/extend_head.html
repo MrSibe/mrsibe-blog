@@ -1,16 +1,3 @@
-{{- /* 百度统计 */ -}}
-{{- if hugo.IsProduction | or (eq site.Params.env "production") }}
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?41fc030db57d5570dd22f78997dc4a7e";
-  var s = document.getElementsByTagName("script")[0];
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-{{- end }}
-
 {{- /* Ahrefs Web Analytics */ -}}
 {{- if hugo.IsProduction | or (eq site.Params.env "production") }}
 <script src="https://analytics.ahrefs.com/analytics.js" data-key="+l1xGejnsYdzsQ6GXnMjjw" async></script>
