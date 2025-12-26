@@ -157,15 +157,21 @@ params:
   socialIcons:
     - name: github
       url: "https://github.com/mrsibe"
+    - name: email
+      url: "mailto:mrsibe@qq.com"  # 替换为您的邮箱
+    - name: x
+      url: "https://x.com/Mr_Sibei"  # 替换为您的 Twitter 用户名
+    - name: bilibili
+      url: "https://space.bilibili.com/386324877"  # 替换为您的 B站 UID
     - name: rss
       url: "/index.xml"
 
   # 网站图标
   assets:
-    favicon: "/images/avatar.webp"
-    favicon16x16: "/images/avatar.webp"
-    favicon32x32: "/images/avatar.webp"
-    apple_touch_icon: "/images/avatar.webp"
+    favicon: "/favicon.ico"
+    favicon16x16: "/favicon-16x16.jpg"
+    favicon32x32: "/favicon-32x32.jpg"
+    apple_touch_icon: "/apple-touch-icon.jpg"
     disableFingerprinting: false
 
   # Label 配置（页眉左侧）
