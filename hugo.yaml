@@ -152,7 +152,7 @@ params:
   # Label 配置（页眉左侧）
   label:
     text: "西贝的代码宇宙"
-    icon: /images/fluid.png
+    icon: /images/avatar.webp
     iconHeight: 35
 
   # Cover 图片设置
