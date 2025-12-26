@@ -1,6 +1,8 @@
 ---
 title: "CS 61B | Hello World Java"
 date: 2025-11-03T10:47:08+08:00
+description: "CS 61B 系列：Java Hello World 程序详解，涵盖 Java 基础语法、编译运行流程和开发环境配置，适合 Java 零基础学习者。"
+summary: "Java Hello World 入门：基础语法、编译运行流程和开发环境配置。"
 categories: ["CS 61B笔记"]
 tags: ["计算机", "数据结构", "公开课"]
 slug: cs-61b/01-hello-world-java

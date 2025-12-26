@@ -1,6 +1,8 @@
 ---
 title: "CS 61B | Defining and Using Classes"
 date: 2025-11-03T10:56:24+08:00
+description: "CS 61B 系列：Java 类的定义与使用详解，学习面向对象编程的核心概念，包括类、对象、方法和构造函数。"
+summary: "Java 类的定义与使用：面向对象编程核心概念，类、对象、方法和构造函数。"
 categories: ["CS 61B笔记"]
 tags: ["计算机", "数据结构", "公开课"]
 slug: cs-61b/02-defining-and-using-classes

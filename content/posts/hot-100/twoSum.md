@@ -1,9 +1,11 @@
 ---
 title: "Hot 100 | 1. 两数之和"
 date: 2025-10-25T14:20:20+08:00
+description: "LeetCode Hot 100 系列：详解两数之和问题的三种解法，从暴力双重循环到哈希表优化，时间复杂度从 O(n²) 降至 O(n)。适合算法入门学习。"
+summary: "详解两数之和的三种解法：暴力循环、双指针、哈希表，时间复杂度从 O(n²) 优化到 O(n)。"
 categories: ["LeetCode Hot 100"]
 tags: ["计算机", "算法", "哈希"]
-slug: hot-100/twoSum
+slug: hot-100/two-sum
 draft: false
 ---
 ## 题目

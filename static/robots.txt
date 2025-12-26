@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+
+# 禁止抓取的目录
+Disallow: /admin/
+Disallow: /private/
+
+# Sitemap 位置
+Sitemap: https://mrsibe.top/sitemap.xml
+
+# 爬虫频率控制
+Crawl-delay: 1
+
+# 特定搜索引擎优化
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /

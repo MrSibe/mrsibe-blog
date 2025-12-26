@@ -1,6 +1,8 @@
 ---
 title: "网站框架用什么好？"
 date: 2025-09-29T11:11:00+08:00
+description: "博客框架选型指南：深度对比 WordPress、VuePress、Hexo 等主流建站框架，分享从零到一搭建个人博客的实战经验和避坑指南。"
+summary: "对比 WordPress、VuePress、Hexo 等建站框架，分享个人博客搭建经验。"
 categories: ["碎碎念"]
 tags: ["网站", "计算机", "博客"]
 slug: which-framework-to-build-website

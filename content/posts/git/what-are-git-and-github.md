@@ -1,6 +1,8 @@
 ---
 title: "Git | Git 和 Github 是什么"
 date: 2025-11-17T12:00:00+08:00
+description: "Git 入门教程：从零理解 Git 版本控制和分支管理的核心概念，以及 GitHub 作为代码托管平台的作用。适合编程初学者。"
+summary: "Git 版本控制基础：理解版本管理、分支管理和 GitHub 代码托管的核心概念。"
 categories: ["Git教程"]
 tags: ["计算机", "Git", "Github"]
 slug: git/what-are-git-and-github

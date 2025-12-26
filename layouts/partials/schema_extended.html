@@ -1,0 +1,59 @@
+{{- if .IsPage }}
+
+{{- /* 教程类文章：HowTo Schema */ -}}
+{{- if in .Params.categories "Git教程" }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": {{ .Title | plainify }},
+  "description": {{ .Description | plainify }},
+  "image": {
+    "@type": "ImageObject",
+    "url": {{ with .Params.cover.image }}{{ . | absURL }}{{ else }}{{ site.Params.assets.favicon | absURL }}{{ end }}
+  },
+  "totalTime": "PT{{ .ReadingTime }}M"
+}
+</script>
+{{- end }}
+
+{{- /* 算法题解：Q&A Schema */ -}}
+{{- if in .Params.categories "LeetCode Hot 100" }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "QAPage",
+  "mainEntity": {
+    "@type": "Question",
+    "name": {{ .Title | plainify }},
+    "text": {{ .Summary | plainify }},
+    "answerCount": 1,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": {{ .Content | plainify | truncate 500 }}
+    }
+  }
+}
+</script>
+{{- end }}
+
+{{- /* 课程笔记：LearningResource Schema */ -}}
+{{- if or (in .Params.categories "CS 61B笔记") (in .Params.categories "CS 168笔记") (in .Params.categories "MIT 6.S081笔记") }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": {{ .Title | plainify }},
+  "description": {{ .Description | plainify }},
+  "educationalLevel": "Beginner to Intermediate",
+  "inLanguage": "zh-CN",
+  "learningResourceType": "Course Notes",
+  "author": {
+    "@type": "Person",
+    "name": {{ site.Params.author }}
+  }
+}
+</script>
+{{- end }}
+
+{{- end }}{{/* .IsPage end */}}

@@ -1,6 +1,8 @@
 ---
 title: "CS 61B | 导论"
 date: 2025-10-24T15:30:00+08:00
+description: "Berkeley CS 61B 课程学习笔记：Java 数据结构与算法课程介绍，包含完整学习路线、资源获取和在线评测平台使用指南。"
+summary: "Berkeley CS 61B 课程介绍：Java 数据结构与算法，包含学习路线和资源获取。"
 categories: ["CS 61B笔记"]
 tags: ["计算机", "数据结构", "公开课"]
 slug: cs-61b/00-intro

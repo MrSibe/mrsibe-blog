@@ -1,6 +1,8 @@
 ---
 title: "MIT 6.S081 | Lab util"
 date: 2025-09-28T18:02:33+08:00
+description: "MIT 6.S081 操作系统 Lab Util 实验详解：从零开始实现 Unix 工具，深入理解系统调用、进程管理和文件操作。"
+summary: "MIT 6.S081 Lab Util 实验：从零实现 Unix 工具，理解系统调用和进程管理。"
 categories: ["MIT 6.S081笔记"]
 tags: ["计算机", "操作系统", "公开课"]
 slug: mit-6s081/lab-util

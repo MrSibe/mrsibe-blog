@@ -1,6 +1,8 @@
 ---
 title: "CS 168 | 导论"
 date: 2025-10-07T21:31:58+08:00
+description: "Berkeley CS 168 计算机网络课程介绍：深入学习网络协议、路由算法、TCP/IP 等核心知识，附带课程资源和学习建议。"
+summary: "Berkeley CS 168 计算机网络课程：网络协议、路由算法、TCP/IP 核心知识。"
 categories: ["CS 168笔记"]
 tags: ["计算机", "计算机网络", "公开课"]
 slug: cs-168/introduction

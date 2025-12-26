@@ -1,6 +1,8 @@
 ---
 title: "Git | 约定式提交规范"
 date: 2025-11-18T17:26:35+08:00
+description: "Git 最佳实践：详解 Conventional Commits 规范，掌握如何编写清晰规范的 Git 提交信息，提升团队协作效率。"
+summary: "学习 Conventional Commits 规范，掌握 feat、fix 等提交类型，编写清晰的提交信息。"
 categories: ["Git教程"]
 tags: ["计算机", "Git", "Github"]
 slug: git/conventional-commits

@@ -33,6 +33,24 @@ outputs:
     - RSS
     - JSON
 
+# 性能优化
+minify:
+  minifyOutput: true
+  disableXML: false
+
+caches:
+  getcsv:
+    maxAge: 2h
+  getjson:
+    maxAge: 2h
+  getresource:
+    maxAge: 2h
+  images:
+    maxAge: 72h
+    dir: ':resourceDir/_gen/images'
+  modules:
+    maxAge: 2h
+
 # Markdown 渲染器配置
 markup:
   goldmark:
@@ -106,7 +124,7 @@ params:
   # 日期格式
   DateFormat: "2006-01-02"
 
-  # 显示设置
+  # 显示设置 - 优化性能
   ShowReadingTime: true
   ShowShareButtons: false
   ShowPostNavLinks: true
@@ -144,10 +162,11 @@ params:
 
   # 网站图标
   assets:
-    favicon: "/favicon.ico"
-    favicon16x16: "/favicon-16x16.png"
-    favicon32x32: "/favicon-32x32.png"
-    apple_touch_icon: "/apple-touch-icon.png"
+    favicon: "/images/avatar.webp"
+    favicon16x16: "/images/avatar.webp"
+    favicon32x32: "/images/avatar.webp"
+    apple_touch_icon: "/images/avatar.webp"
+    disableFingerprinting: false
 
   # Label 配置（页眉左侧）
   label:
@@ -163,6 +182,11 @@ params:
     responsiveImages: true
     linkFullImages: true
 
+  # Google Search Console 验证（新增）
+  analytics:
+    google:
+      SiteVerificationTag: "替换为您的验证码"
+
 # Google Analytics
 googleAnalytics: G-BZZVEEJVCS
 
@@ -173,3 +197,22 @@ privacy:
     disable: false
     respectDoNotTrack: false
     useSessionStorage: false
+
+# Sitemap 配置（新增）
+sitemap:
+  changefreq: weekly
+  filename: sitemap.xml
+  priority: 0.5
+
+# 相关文章配置（新增）
+related:
+  threshold: 80
+  includeNewer: true
+  toLower: true
+  indices:
+    - name: tags
+      weight: 100
+    - name: categories
+      weight: 80
+    - name: date
+      weight: 10
