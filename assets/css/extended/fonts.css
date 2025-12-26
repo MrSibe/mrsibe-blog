@@ -1,0 +1,63 @@
+/* ====================
+   Typography & Font Configuration
+   Digital Minimalism Style
+   ==================== */
+
+/* Font stacks - Digital Minimalism with Chinese support */
+:root {
+    /* Base serif font: Charter > Source Serif 4 > Noto Serif SC for Chinese */
+    --base-font: 'Charter', 'Source Serif 4', 'Noto Serif SC', 'Songti SC', 'STSong', 'SimSun', serif;
+
+    /* Mono font: Terminal/Code feel */
+    --mono-font: 'JetBrains Mono', 'IBM Plex Mono', 'Menlo', 'Monaco', 'Consolas', monospace;
+}
+
+/* Body - Elegant serif reading */
+body {
+    font-family: var(--base-font);
+    font-size: 18px;
+    line-height: 1.8;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings - Serif with emphasis */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--base-font);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+}
+
+/* Navigation & UI - Terminal monospace style */
+#menu,
+#menu a,
+#menu li,
+.logo,
+.logo a,
+.logo-switches,
+#theme-toggle,
+.lang-switch,
+.lang-switch a,
+.breadcrumbs {
+    font-family: var(--mono-font);
+    font-weight: 500;
+}
+
+/* Metadata & Tags - Monospace */
+.post-meta,
+.entry-footer,
+.post-tags a {
+    font-family: var(--mono-font);
+    font-size: 13px;
+    font-weight: 400;
+}
+
+/* Code - Monospace */
+code,
+pre,
+.hljs,
+kbd {
+    font-family: var(--mono-font);
+    font-weight: 400;
+}
