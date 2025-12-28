@@ -21,9 +21,11 @@
                 {{- end }}
                 {{- end }}
                 <img src="{{ $img.Permalink }}" alt="" aria-label="logo"
+                    width="{{- site.Params.label.iconHeight | default " 30" -}}"
                     height="{{- site.Params.label.iconHeight | default " 30" -}}">
                 {{- else }}
                 <img src="{{- site.Params.label.icon | absURL -}}" alt="" aria-label="logo"
+                    width="{{- site.Params.label.iconHeight | default " 30" -}}"
                     height="{{- site.Params.label.iconHeight | default " 30" -}}">
                 {{- end -}}
                 {{- else if hasPrefix site.Params.label.iconSVG "<svg" }} {{ site.Params.label.iconSVG | safeHTML }} {{-
