@@ -1,0 +1,44 @@
+{{- /* 搜索模态框组件 - 基于 PaperMod 主题 */ -}}
+<div id="search-modal" class="search-modal" style="display: none;" aria-hidden="true">
+    <div class="search-modal-overlay" aria-label="关闭搜索"></div>
+    <div class="search-modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-search-input">
+        <div class="search-modal-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" class="search-modal-icon">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input id="modal-search-input" type="search" placeholder="搜索文章..." autocomplete="off" autocapitalize="off"
+                spellcheck="false" aria-label="搜索文章">
+            <button class="search-modal-close" aria-label="关闭搜索" title="关闭 (Esc)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+        <div class="search-modal-body">
+            <ul id="modal-search-results" role="listbox"></ul>
+            <div class="search-modal-loading" style="display: none;">
+                <div class="loading-spinner"></div>
+                <p>加载搜索索引中...</p>
+            </div>
+            <div class="search-modal-empty" style="display: none;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1.5">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <p>未找到相关内容</p>
+            </div>
+        </div>
+        <div class="search-modal-footer">
+            <div class="search-modal-hints">
+                <span><kbd>↑</kbd><kbd>↓</kbd> 导航</span>
+                <span><kbd>Enter</kbd> 打开</span>
+                <span><kbd>Esc</kbd> 关闭</span>
+            </div>
+        </div>
+    </div>
+</div>

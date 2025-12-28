@@ -47,7 +47,7 @@ caches:
     maxAge: 2h
   images:
     maxAge: 72h
-    dir: ':resourceDir/_gen/images'
+    dir: ":resourceDir/_gen/images"
   modules:
     maxAge: 2h
 
@@ -55,7 +55,7 @@ caches:
 markup:
   goldmark:
     renderer:
-      unsafe: true  # 允许 HTML
+      unsafe: true # 允许 HTML
   highlight:
     anchorLineNos: false
     codeFences: true
@@ -84,18 +84,14 @@ menu:
       name: 标签
       url: /tags/
       weight: 4
-    - identifier: search
-      name: 搜索
-      url: /search/
-      weight: 5
     - identifier: about
       name: 关于
       url: /about/
-      weight: 6
+      weight: 5
     - identifier: links
       name: 友链
       url: /links/
-      weight: 7
+      weight: 6
 
 # PaperMod 主题参数
 params:
@@ -118,7 +114,7 @@ params:
   author: 啊啊啊啊啊西贝
 
   # 主题模式
-  defaultTheme: auto  # auto, light, dark
+  defaultTheme: auto # auto, light, dark
   disableThemeToggle: false
 
   # 日期格式
@@ -158,11 +154,11 @@ params:
     - name: github
       url: "https://github.com/mrsibe"
     - name: email
-      url: "mailto:mrsibe@qq.com"  # 替换为您的邮箱
+      url: "mailto:mrsibe@qq.com" # 替换为您的邮箱
     - name: x
-      url: "https://x.com/Mr_Sibei"  # 替换为您的 Twitter 用户名
+      url: "https://x.com/Mr_Sibei" # 替换为您的 Twitter 用户名
     - name: bilibili
-      url: "https://space.bilibili.com/386324877"  # 替换为您的 B站 UID
+      url: "https://space.bilibili.com/386324877" # 替换为您的 B站 UID
     - name: rss
       url: "/index.xml"
 
