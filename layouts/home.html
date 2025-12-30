@@ -1,0 +1,52 @@
+{{- define "main" }}
+
+{{- /* 1. 欢迎信息 - 复用 PaperMod 的 home_info 组件 */ -}}
+{{- partial "home_info.html" . }}
+
+{{- /* 2. 关于我内容区域 - 使用独立的 about-section 样式 */ -}}
+<article class="about-section">
+  <header class="entry-header">
+    <h1>👋 关于我</h1>
+  </header>
+  <div class="entry-content">
+    <p>你好，我是<strong>西贝</strong>，一个喜欢天文的计算机专业学生。</p>
+    <p>我喜欢用望远镜对准星空，喜欢在草地看流星划过，喜欢在深夜里寻找新的未知天体。</p>
+    <p>我热衷于有趣的计算机技术，比如自定义Linux系统，喜欢用Ai把脑子中的想法变成现实。</p>
+    
+    <h3>📝 关于本站</h3>
+    <p>这里是我的技术博客，记录学习路上的思考与实践。从算法到架构，从工具折腾到项目实战，我在这里分享每一次探索与成长。</p>
+    <p>如果你也对后端架构、AI 工程化或开发工具感兴趣，欢迎一起交流！</p>
+
+    <h3>🔗 找到我</h3>
+    <p>微信公众号：<strong>西贝茶馆</strong> | GitHub: <a href="https://github.com/MrSibe" target="_blank">@MrSibe</a></p>
+  </div>
+</article>
+
+{{- /* 3. 最新文章列表 */ -}}
+<section class="recent-posts">
+  <h2>最新文章</h2>
+  {{- $pages := first 5 (where site.RegularPages "Type" "posts") }}
+  {{- range $pages }}
+  <article class="post-entry">
+    <header class="entry-header">
+      <h3>
+        <a href="{{ .Permalink }}">{{ .Title }}</a>
+      </h3>
+    </header>
+    {{- if (ne (.Param "hideSummary") true) }}
+    <div class="entry-content">
+      <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>
+    </div>
+    {{- end }}
+    <footer class="entry-footer">
+      {{- partial "post_meta.html" . -}}
+    </footer>
+  </article>
+  {{- end }}
+
+  <div class="view-all">
+    <a href="/archives/">查看全部文章 →</a>
+  </div>
+</section>
+
+{{- end }}

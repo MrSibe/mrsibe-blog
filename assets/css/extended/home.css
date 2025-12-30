@@ -1,0 +1,99 @@
+/* ==================== 关于我区域 - 独立样式 ==================== */
+.about-section {
+    margin: var(--gap) 0 calc(var(--gap) * 2) 0;
+}
+
+/* 主标题和子标题统一样式 - 与"最新文章"保持一致 */
+.about-section h1,
+.about-section h3 {
+    font-size: 24px;
+    margin-bottom: var(--gap);
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+    color: var(--primary);
+}
+
+/* 子标题上方添加额外间距 */
+.about-section h3 {
+    margin-top: calc(var(--gap) * 1.5);
+}
+
+.about-section .entry-content {
+    font-size: 16px;
+    line-height: 1.6;
+    /* 覆盖主题默认的截断样式，显示完整内容 */
+    overflow: visible;
+    display: block;
+    -webkit-line-clamp: unset;
+    -webkit-box-orient: unset;
+}
+
+.about-section p {
+    margin: 12px 0;
+}
+
+/* ==================== 最新文章区域 ==================== */
+.recent-posts {
+    margin-top: calc(var(--gap) * 2);
+}
+
+.recent-posts h2 {
+    font-size: 24px;
+    margin-bottom: var(--gap);
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+    color: var(--primary);
+}
+
+.recent-posts .post-entry {
+    margin-bottom: var(--gap);
+}
+
+.recent-posts .entry-header h3 {
+    font-size: 20px;
+    margin: 0 0 8px 0;
+    font-weight: 600;
+}
+
+.recent-posts .entry-header h3 a {
+    color: var(--content);
+    text-decoration: none;
+}
+
+.recent-posts .entry-header h3 a:hover {
+    color: var(--primary);
+}
+
+.recent-posts .entry-content {
+    margin: 8px 0;
+}
+
+.recent-posts .entry-footer {
+    margin-top: 8px;
+}
+
+.view-all {
+    text-align: center;
+    margin-top: calc(var(--gap) * 1.5);
+}
+
+.view-all a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.view-all a:hover {
+    text-decoration: underline;
+}
+
+/* ==================== 响应式设计 ==================== */
+@media screen and (max-width: 768px) {
+    .recent-posts h2 {
+        font-size: 20px;
+    }
+
+    .recent-posts .entry-header h3 {
+        font-size: 18px;
+    }
+}
