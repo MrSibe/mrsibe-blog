@@ -1,0 +1,45 @@
+{{- /* 右侧边栏：分类列表 + 标签云 */ -}}
+<aside class="sidebar-right">
+    {{- /* 分类列表 */ -}}
+    <div class="sidebar-section">
+        <h3 class="sidebar-title">
+            <a href="{{ "/categories/" | relLangURL }}" class="sidebar-title-link">分类</a>
+        </h3>
+        {{- if site.Taxonomies.categories }}
+        <ul class="sidebar-categories">
+            {{- range $name, $taxonomy := site.Taxonomies.categories }}
+            <li>
+                <a href="{{ "/categories/" | relLangURL }}{{ $name | urlize }}">
+                    <span class="category-name">{{ $name }}</span>
+                    <span class="category-count">{{ $taxonomy.Count }}</span>
+                </a>
+            </li>
+            {{- end }}
+        </ul>
+        {{- else }}
+        <p class="sidebar-empty">暂无分类</p>
+        {{- end }}
+    </div>
+
+    {{- /* 标签云 - 按使用频率排序，显示前20个 */ -}}
+    <div class="sidebar-section">
+        <h3 class="sidebar-title">
+            <a href="{{ "/tags/" | relLangURL }}" class="sidebar-title-link">热门标签</a>
+        </h3>
+        {{- if site.Taxonomies.tags }}
+        <div class="sidebar-tags">
+            {{- $sortedTags := slice }}
+            {{- range $name, $taxonomy := site.Taxonomies.tags }}
+                {{- $sortedTags = $sortedTags | append (dict "name" $name "count" $taxonomy.Count) }}
+            {{- end }}
+            {{- range first 20 (sort $sortedTags "count" "desc") }}
+            <a href="{{ "/tags/" | relLangURL }}{{ .name | urlize }}" class="tag-item">
+                {{ .name }}<sup>{{ .count }}</sup>
+            </a>
+            {{- end }}
+        </div>
+        {{- else }}
+        <p class="sidebar-empty">暂无标签</p>
+        {{- end }}
+    </div>
+</aside>

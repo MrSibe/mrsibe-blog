@@ -1,0 +1,375 @@
+/* ==================== 三列布局容器 ==================== */
+.main-wrapper {
+  max-width: calc(
+    200px + var(--main-width) + var(--gap) * 2 + 240px + var(--gap) * 6
+  );
+  /* 200px(左) + 768px(中,含padding) + 240px(右) + 间距 */
+  display: flex;
+  align-items: flex-start; /* 顶部对齐 */
+  gap: calc(var(--gap) * 2);
+  margin: 0 auto;
+  padding: 0 var(--gap);
+}
+
+/* ==================== 左侧边栏 - 个人简介 ==================== */
+.sidebar-left {
+  flex: 0 0 200px;
+  width: 200px;
+  padding: var(--gap) 0;
+}
+
+/* 首页：侧边栏与"关于我"顶部对齐（跳过欢迎信息） */
+body.list .sidebar-left {
+  margin-top: 380px; /* 根据 home_info 高度调整 */
+}
+
+body.list .sidebar-right {
+  margin-top: 380px; /* 根据 home_info 高度调整 */
+}
+
+/* 文章页：侧边栏与正文内容对齐（跳过标题和元数据） */
+body:not(.list) .sidebar-left {
+  margin-top: 300px; /* 根据文章标题和元数据高度调整 */
+}
+
+body:not(.list) .sidebar-right {
+  margin-top: 300px; /* 根据文章标题和元数据高度调整 */
+}
+
+/* 个人简介卡片 */
+.profile-card {
+  background: var(--entry);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: calc(var(--gap) * 1.2);
+  text-align: center;
+}
+
+/* 头像 */
+.profile-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: calc(var(--gap) * 0.8);
+}
+
+.profile-avatar img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 3px solid var(--border);
+  transition: transform 0.3s ease;
+  display: block;
+}
+
+.profile-avatar img:hover {
+  transform: scale(1.05);
+}
+
+/* 个人信息 */
+.profile-info {
+  margin-bottom: calc(var(--gap) * 0.8);
+}
+
+.profile-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0 0 calc(var(--gap) * 0.3) 0;
+}
+
+.profile-title {
+  font-size: 14px;
+  color: var(--secondary);
+  margin: 0 0 calc(var(--gap) * 0.5) 0;
+}
+
+.profile-bio {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--content);
+  margin: 0;
+}
+
+/* 社交链接 */
+.profile-links {
+  display: flex;
+  justify-content: center;
+  gap: calc(var(--gap) * 0.8);
+  padding-top: calc(var(--gap) * 0.8);
+  border-top: 1px solid var(--border);
+}
+
+.profile-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--tertiary);
+  color: var(--primary);
+  transition: all 0.2s ease;
+}
+
+.profile-links a:hover {
+  background: var(--primary);
+  color: var(--theme);
+  transform: translateY(-2px);
+}
+
+.profile-links svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ==================== 主内容区域 ==================== */
+.main {
+  flex: 0 0 calc(var(--main-width) + var(--gap) * 2);
+  /* 固定768px (720px内容 + 48px padding)，不伸缩 */
+  max-width: calc(var(--main-width) + var(--gap) * 2);
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+  margin: 0;
+  padding: var(--gap);
+  /* 左右各24px padding，实际内容宽度720px */
+}
+
+/* 当 main 不在 main-wrapper 中时（归档、分类、标签、友链页面），居中显示 */
+body > .main {
+  margin: 0 auto;
+}
+
+/* ==================== 右侧边栏 - 分类和标签 ==================== */
+.sidebar-right {
+  flex: 0 0 240px;
+  width: 240px;
+  padding: var(--gap) 0;
+}
+
+/* ==================== 侧边栏区块 ==================== */
+.sidebar-section {
+  background: var(--entry);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: calc(var(--gap) * 0.8);
+  margin-bottom: var(--gap);
+}
+
+.sidebar-section:last-child {
+  margin-bottom: 0;
+}
+
+/* 侧边栏标题 */
+.sidebar-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--primary);
+  margin: 0 0 calc(var(--gap) * 0.6) 0;
+  padding-bottom: calc(var(--gap) * 0.4);
+  border-bottom: 2px solid var(--border);
+}
+
+/* 侧边栏标题链接 */
+.sidebar-title-link {
+  color: var(--primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.sidebar-title-link:hover {
+  color: var(--tertiary);
+  text-decoration: none;
+}
+
+/* 空状态提示 */
+.sidebar-empty {
+  font-size: 13px;
+  color: var(--secondary);
+  text-align: center;
+  margin: calc(var(--gap) * 0.5) 0 0 0;
+}
+
+/* ==================== 分类列表 ==================== */
+.sidebar-categories {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar-categories li {
+  margin-bottom: calc(var(--gap) * 0.4);
+}
+
+.sidebar-categories li:last-child {
+  margin-bottom: 0;
+}
+
+.sidebar-categories a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  border-radius: calc(var(--radius) / 2);
+  text-decoration: none;
+  color: var(--content);
+  transition: all 0.2s ease;
+  background: transparent;
+}
+
+.sidebar-categories a:hover {
+  background: var(--tertiary);
+  color: var(--primary);
+  transform: translateX(4px);
+}
+
+.category-name {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.category-count {
+  font-size: 12px;
+  color: var(--secondary);
+  background: var(--code-bg);
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.sidebar-categories a:hover .category-count {
+  background: var(--theme);
+  color: var(--primary);
+}
+
+/* ==================== 标签云 ==================== */
+.sidebar-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  background: var(--tertiary);
+  border-radius: calc(var(--radius) / 2);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--primary);
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.tag-item:hover {
+  background: var(--primary);
+  color: var(--theme);
+  transform: translateY(-2px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tag-item sup {
+  margin-left: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  opacity: 0.7;
+}
+
+/* ==================== 响应式设计 ==================== */
+
+/* 平板设备 (769px - 1200px): 隐藏左侧边栏，保留右侧 */
+@media screen and (max-width: 1200px) and (min-width: 769px) {
+  .sidebar-left {
+    display: none;
+  }
+
+  .main-wrapper {
+    max-width: calc(
+      var(--main-width) + var(--gap) * 2 + 220px + var(--gap) * 4
+    );
+    /* 768px(中,含padding) + 220px(右) + 间距 */
+  }
+
+  .sidebar-right {
+    flex: 0 0 220px;
+    width: 220px;
+  }
+
+  .sidebar-title {
+    font-size: 16px;
+  }
+
+  .category-name {
+    font-size: 13px;
+  }
+
+  .tag-item {
+    font-size: 12px;
+    padding: 4px 10px;
+  }
+}
+
+/* 移动端 (<=768px): 完全隐藏左右侧边栏 */
+@media screen and (max-width: 768px) {
+  .sidebar-left,
+  .sidebar-right {
+    display: none;
+  }
+
+  .main {
+    flex: 1;
+    max-width: 100%;
+    padding: var(--gap);
+  }
+}
+
+/* ==================== 深色模式优化 ==================== */
+:root[data-theme="dark"] .sidebar-section,
+:root[data-theme="dark"] .profile-card {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+:root[data-theme="dark"] .tag-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+:root[data-theme="dark"] .profile-links a:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* ==================== 减少动画模式 ==================== */
+@media (prefers-reduced-motion: reduce) {
+  .sidebar-categories a,
+  .tag-item,
+  .profile-links a,
+  .profile-avatar img {
+    transition: none;
+  }
+
+  .sidebar-categories a:hover,
+  .tag-item:hover,
+  .profile-links a:hover,
+  .profile-avatar img:hover {
+    transform: none;
+  }
+}
+
+/* ==================== 高对比度模式 ==================== */
+@media (prefers-contrast: high) {
+  .sidebar-section,
+  .profile-card {
+    border-width: 2px;
+  }
+
+  .sidebar-title {
+    border-bottom-width: 3px;
+  }
+
+  .category-count {
+    border: 1px solid var(--border);
+  }
+
+  .profile-avatar img {
+    border-width: 4px;
+  }
+}
