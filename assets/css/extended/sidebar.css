@@ -1,9 +1,11 @@
 /* ==================== 三列布局容器 ==================== */
 .main-wrapper {
-  max-width: calc(
-    200px + var(--main-width) + var(--gap) * 2 + 240px + var(--gap) * 6
+  /* 理想宽度：220px(左) + 768px(中,含padding) + 220px(右) + 间距 */
+  width: calc(
+    220px + var(--main-width) + var(--gap) * 2 + 220px + var(--gap) * 6
   );
-  /* 200px(左) + 768px(中,含padding) + 240px(右) + 间距 */
+  /* 不超过视口宽度，避免溢出 */
+  max-width: 100%;
   display: flex;
   align-items: flex-start; /* 顶部对齐 */
   gap: calc(var(--gap) * 2);
@@ -16,8 +18,10 @@
 
 /* ==================== 左侧边栏 - 个人简介 ==================== */
 .sidebar-left {
-  flex: 0 0 200px;
-  width: 200px;
+  /* 基础宽度 220px，可以收缩但不增长 */
+  flex: 0 1 220px;
+  /* 收缩时的最小宽度 */
+  min-width: 160px;
   /* 添加上 padding，使内容与 main 的内容顶部对齐 */
   padding-top: var(--gap);
 
@@ -129,8 +133,8 @@
 
 /* ==================== 主内容区域 ==================== */
 .main {
+  /* 固定768px (720px内容 + 48px padding)，不收缩以保持可读性 */
   flex: 0 0 calc(var(--main-width) + var(--gap) * 2);
-  /* 固定768px (720px内容 + 48px padding)，不伸缩 */
   max-width: calc(var(--main-width) + var(--gap) * 2);
   min-height: calc(100vh - var(--header-height) - var(--footer-height));
   margin: 0;
@@ -145,8 +149,10 @@ body > .main {
 
 /* ==================== 右侧边栏 - 分类和标签 ==================== */
 .sidebar-right {
-  flex: 0 0 240px;
-  width: 240px;
+  /* 基础宽度 220px，可以收缩但不增长 */
+  flex: 0 1 220px;
+  /* 收缩时的最小宽度 */
+  min-width: 160px;
   /* 添加上 padding，使内容与 main 的内容顶部对齐 */
   padding-top: var(--gap);
 
@@ -320,48 +326,29 @@ body > .main {
 
 /* ==================== 响应式设计 ==================== */
 
-/* 平板设备 (769px - 1200px): 隐藏左侧边栏，保留右侧 */
-@media screen and (max-width: 1200px) and (min-width: 769px) {
-  .sidebar-left {
-    display: none;
-  }
-
-  .main-wrapper {
-    max-width: calc(
-      var(--main-width) + var(--gap) * 2 + 220px + var(--gap) * 4
-    );
-    /* 768px(中,含padding) + 220px(右) + 间距 */
-  }
-
-  .sidebar-right {
-    flex: 0 0 220px;
-    width: 220px;
-  }
-
-  .sidebar-title {
-    font-size: 16px;
-  }
-
-  .category-name {
-    font-size: 13px;
-  }
-
-  .tag-item {
-    font-size: 12px;
-    padding: 4px 10px;
-  }
-}
-
-/* 移动端 (<=768px): 完全隐藏左右侧边栏 */
-@media screen and (max-width: 768px) {
+/* 中小屏设备 (<=1200px): 同时隐藏左右侧边栏，切换到单列布局 */
+@media screen and (max-width: 1200px) {
   .sidebar-left,
   .sidebar-right {
     display: none;
   }
 
+  .main-wrapper {
+    /* 重置宽度，避免溢出 */
+    width: auto;
+    max-width: calc(var(--main-width) + var(--gap) * 2);
+    justify-content: center;
+  }
+
   .main {
     flex: 1;
     max-width: 100%;
+  }
+}
+
+/* 移动端优化 (<=768px): 减小内边距 */
+@media screen and (max-width: 768px) {
+  .main {
     padding: var(--gap);
   }
 }

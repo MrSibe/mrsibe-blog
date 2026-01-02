@@ -1,14 +1,68 @@
 /* ==================== Home 欢迎信息 - 全宽显示 ==================== */
 .home-hero-wrapper {
     max-width: calc(
-        200px + var(--main-width) + var(--gap) * 2 + 240px + var(--gap) * 6
+        220px + var(--main-width) + var(--gap) * 2 + 220px + var(--gap) * 6
     );
     /* 与 main-wrapper 保持一致的宽度，确保对齐 */
     margin: 0 auto var(--gap) auto;
-    /* 左侧: main-wrapper左padding gap + 左边栏200px + 间隙gap*2 + main左padding gap = 200px + gap*4 */
-    /* 右侧: main-wrapper右padding gap + 右边栏240px + 间隙gap*2 + main右padding gap = 240px + gap*4 */
-    padding-left: calc(200px + var(--gap) * 4);
-    padding-right: calc(240px + var(--gap) * 4);
+    /* 左侧: main-wrapper左padding gap + 左边栏220px + 间隙gap*2 + main左padding gap = 220px + gap*4 */
+    /* 右侧: main-wrapper右padding gap + 右边栏220px + 间隙gap*2 + main右padding gap = 220px + gap*4 */
+    padding-left: calc(220px + var(--gap) * 4);
+    padding-right: calc(220px + var(--gap) * 4);
+}
+
+/* Home Info 区域 - 优雅动画 */
+.home-info {
+    padding: calc(var(--gap) * 2);
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+}
+
+/* 标题优化 + 渐进式显示 */
+.home-info .entry-header h1 {
+    font-size: clamp(1.8rem, 4.5vw, 3rem);
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    margin-bottom: calc(var(--gap) * 1.2);
+    animation: fadeInUp 0.8s ease-out 0.2s forwards;
+    opacity: 0;
+}
+
+/* 内容延迟显示 */
+.home-info .entry-content {
+    animation: fadeInUp 0.8s ease-out 0.4s forwards;
+    opacity: 0;
+}
+
+/* 社交图标延迟显示 */
+.home-info .entry-footer {
+    animation: fadeInUp 0.8s ease-out 0.6s forwards;
+    opacity: 0;
+}
+
+/* 淡入上移动画 - Digital Minimalism 风格 */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 尊重用户动画偏好 - 无障碍设计 */
+@media (prefers-reduced-motion: reduce) {
+    .home-info,
+    .home-info .entry-header h1,
+    .home-info .entry-content,
+    .home-info .entry-footer {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
 }
 
 /* ==================== 关于我区域 - 独立样式 ==================== */
@@ -186,7 +240,32 @@
 }
 
 /* ==================== 响应式设计 ==================== */
+
+/* 中小屏设备 (<=1200px): 侧栏消失，调整 Home 宽度和 padding */
+@media screen and (max-width: 1200px) {
+    .home-hero-wrapper {
+        max-width: calc(var(--main-width) + var(--gap) * 2);
+        padding-left: var(--gap);
+        padding-right: var(--gap);
+    }
+}
+
+/* 移动端 (<=768px): 进一步优化间距和字体 */
 @media screen and (max-width: 768px) {
+    .home-info {
+        padding: calc(var(--gap) * 1.5);
+    }
+
+    .home-info .entry-header h1 {
+        font-size: clamp(1.5rem, 6vw, 2rem);
+        line-height: 1.3;
+        margin-bottom: var(--gap);
+    }
+
+    .home-info .entry-content {
+        font-size: 16px;
+    }
+
     .hero-quote {
         font-size: clamp(1.5rem, 6vw, 2.5rem);
         padding-left: var(--gap);
