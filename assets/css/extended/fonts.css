@@ -5,10 +5,13 @@
 
 /* Font stacks - Digital Minimalism with Chinese support */
 :root {
-    /* Base serif font: Charter > Source Serif 4 > Noto Serif SC for Chinese */
-    --base-font: 'Charter', 'Source Serif 4', 'Noto Serif SC', 'Songti SC', 'STSong', 'SimSun', serif;
+    /* Serif font for body & headings: Source Serif 4 > Noto Serif SC for Chinese */
+    --base-font: 'Source Serif 4', 'Noto Serif SC', 'Songti SC', 'STSong', 'SimSun', serif;
 
-    /* Mono font: Terminal/Code feel */
+    /* Display serif for navigation: Noto Serif SC with elegant spacing */
+    --display-font: 'Noto Serif SC', 'Source Serif 4', 'Songti SC', 'STSong', serif;
+
+    /* Mono font: Code blocks only */
     --mono-font: 'JetBrains Mono', 'IBM Plex Mono', 'Menlo', 'Monaco', 'Consolas', monospace;
 }
 
@@ -29,7 +32,7 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: -0.01em;
 }
 
-/* Navigation & UI - Terminal monospace style */
+/* Navigation & UI - Elegant serif style (Digital Minimalism) */
 #menu,
 #menu a,
 #menu li,
@@ -40,17 +43,19 @@ h1, h2, h3, h4, h5, h6 {
 .lang-switch,
 .lang-switch a,
 .breadcrumbs {
-    font-family: var(--mono-font);
+    font-family: var(--display-font);
     font-weight: 500;
+    letter-spacing: 0.01em;
 }
 
-/* Metadata & Tags - Monospace */
+/* Metadata & Tags - Serif for consistency */
 .post-meta,
 .entry-footer,
 .post-tags a {
-    font-family: var(--mono-font);
-    font-size: 13px;
+    font-family: var(--base-font);
+    font-size: 14px;
     font-weight: 400;
+    letter-spacing: 0.01em;
 }
 
 /* Code - Monospace */
