@@ -29,7 +29,27 @@
         {{- /* 判断是否需要显示侧边栏 */ -}}
         {{- $hideSidebar := or (eq .Layout "archives") (eq .Type "categories") (eq .Type "tags") (in .RelPermalink "/links/") -}}
 
-        {{- if $hideSidebar }}
+        {{- if eq .Kind "home" }}
+            {{- /* 首页特殊布局：欢迎信息全宽 + 下方三列布局 */ -}}
+            {{- /* 欢迎信息 - 全宽显示 */ -}}
+            <div class="home-hero-wrapper">
+                {{- partial "home_info.html" . }}
+            </div>
+
+            {{- /* 下方内容 - 三列布局 */ -}}
+            <div class="main-wrapper">
+                {{- /* 左侧边栏：个人简介 */ -}}
+                {{- partialCached "sidebar-left.html" . .Site.Lastmod -}}
+
+                {{- /* 主内容区域 */ -}}
+                <main class="main">
+                    {{- block "main" . }}{{ end }}
+                </main>
+
+                {{- /* 右侧边栏：分类+标签云 */ -}}
+                {{- partialCached "sidebar-right.html" . .Site.Lastmod -}}
+            </div>
+        {{- else if $hideSidebar }}
             {{- /* 归档、分类、标签、友链页面：不显示侧边栏 */ -}}
             <main class="main">
                 {{- block "main" . }}{{ end }}

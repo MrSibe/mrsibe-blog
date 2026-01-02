@@ -1,6 +1,55 @@
+/* ==================== Home 欢迎信息 - 全宽显示 ==================== */
+.home-hero-wrapper {
+    max-width: calc(
+        200px + var(--main-width) + var(--gap) * 2 + 240px + var(--gap) * 6
+    );
+    /* 与 main-wrapper 保持一致的宽度，确保对齐 */
+    margin: 0 auto var(--gap) auto;
+    /* 左侧: main-wrapper左padding gap + 左边栏200px + 间隙gap*2 + main左padding gap = 200px + gap*4 */
+    /* 右侧: main-wrapper右padding gap + 右边栏240px + 间隙gap*2 + main右padding gap = 240px + gap*4 */
+    padding-left: calc(200px + var(--gap) * 4);
+    padding-right: calc(240px + var(--gap) * 4);
+}
+
 /* ==================== 关于我区域 - 独立样式 ==================== */
 .about-section {
-    margin: var(--gap) 0 calc(var(--gap) * 2) 0;
+    /* 移除上边距，让它与侧栏顶部对齐 */
+    margin: 0 0 calc(var(--gap) * 2) 0;
+    background: var(--entry);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: calc(var(--gap) * 1.5);
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.03),
+        0 1px 2px rgba(0, 0, 0, 0.02);
+}
+
+/* 英雄引用区域 */
+.hero-quote-wrapper {
+    margin-bottom: calc(var(--gap) * 2);
+    padding: calc(var(--gap) * 2) 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.hero-quote {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    color: var(--primary);
+    margin: 0 0 calc(var(--gap) * 0.8) 0;
+    padding-left: calc(var(--gap) * 1.5);
+    border-left: 4px solid var(--tertiary);
+    font-family: var(--base-font);
+}
+
+.hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--secondary);
+    margin: 0;
+    padding-left: calc(var(--gap) * 1.5);
+    font-family: var(--base-font);
+    font-style: italic;
 }
 
 /* 主标题和子标题统一样式 - 与"最新文章"保持一致 */
@@ -47,6 +96,44 @@
 
 .recent-posts .post-entry {
     margin-bottom: var(--gap);
+    padding: calc(var(--gap) * 1.2);
+    background: var(--entry);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.03),
+        0 1px 2px rgba(0, 0, 0, 0.02);
+    transition: box-shadow 0.2s ease-out, border-color 0.2s ease-out;
+    position: relative;
+    /* 移除 overflow: hidden，允许伪元素扩展 */
+    cursor: pointer;
+}
+
+/* 阅读进度指示条 */
+.recent-posts .post-entry::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--tertiary), var(--primary));
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s ease-out;
+    /* 确保进度条在圆角内 */
+    border-radius: var(--radius) 0 0 var(--radius);
+}
+
+.recent-posts .post-entry:hover {
+    box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.06),
+        0 2px 4px rgba(0, 0, 0, 0.04);
+    border-color: var(--tertiary);
+}
+
+.recent-posts .post-entry:hover::before {
+    transform: scaleY(1);
 }
 
 .recent-posts .entry-header h3 {
@@ -58,9 +145,20 @@
 .recent-posts .entry-header h3 a {
     color: var(--content);
     text-decoration: none;
+    /* 不设置 position，让 ::after 相对于 .post-entry 定位 */
 }
 
-.recent-posts .entry-header h3 a:hover {
+/* 扩展链接点击区域到整个卡片 */
+.recent-posts .entry-header h3 a::after {
+    content: '';
+    position: absolute;
+    /* 覆盖整个 .post-entry 区域（从左上角到右下角） */
+    inset: 0;
+    z-index: 2;
+}
+
+/* 悬停在卡片任意位置时，标题变色提示可点击 */
+.recent-posts .post-entry:hover .entry-header h3 a {
     color: var(--primary);
 }
 
@@ -89,11 +187,35 @@
 
 /* ==================== 响应式设计 ==================== */
 @media screen and (max-width: 768px) {
+    .hero-quote {
+        font-size: clamp(1.5rem, 6vw, 2.5rem);
+        padding-left: var(--gap);
+        border-left-width: 3px;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+        padding-left: var(--gap);
+    }
+
+    .hero-quote-wrapper {
+        padding: var(--gap) 0;
+        margin-bottom: var(--gap);
+    }
+
+    .about-section {
+        padding: var(--gap);
+    }
+
     .recent-posts h2 {
         font-size: 20px;
     }
 
     .recent-posts .entry-header h3 {
         font-size: 18px;
+    }
+
+    .recent-posts .post-entry {
+        padding: var(--gap);
     }
 }

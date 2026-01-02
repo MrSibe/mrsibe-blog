@@ -1,9 +1,8 @@
 {{- define "main" }}
 
-{{- /* 1. 欢迎信息 - 复用 PaperMod 的 home_info 组件 */ -}}
-{{- partial "home_info.html" . }}
+{{- /* 欢迎信息已在 baseof.html 中全宽显示，这里不再重复 */ -}}
 
-{{- /* 2. 关于我内容区域 - 使用独立的 about-section 样式 */ -}}
+{{- /* 1. 关于我内容区域 - 使用独立的 about-section 样式 */ -}}
 <article class="about-section">
   <header class="entry-header">
     <h1>👋 关于我</h1>

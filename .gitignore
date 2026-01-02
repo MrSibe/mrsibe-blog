@@ -26,3 +26,5 @@ node_modules/
 # 环境文件
 .env
 .env.local
+
+.claude
