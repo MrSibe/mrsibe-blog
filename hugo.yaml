@@ -1,5 +1,6 @@
 baseURL: https://mrsibe.top/
 languageCode: zh-CN
+hasCJKLanguage: true
 title: 西贝的代码宇宙
 theme: ["PaperMod"]
 
