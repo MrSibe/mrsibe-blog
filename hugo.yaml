@@ -47,7 +47,7 @@ caches:
   getresource:
     maxAge: 2h
   images:
-    maxAge: 72h
+    maxAge: 168h  # 1周，优化图片缓存
     dir: ":resourceDir/_gen/images"
   modules:
     maxAge: 2h

@@ -5,9 +5,9 @@
 <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 
 {{- /* Google Fonts - 优化加载策略（异步加载，避免阻塞渲染，仅加载必要字重） */ -}}
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;600&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600&family=JetBrains+Mono:wght@400&family=Noto+Serif+SC:wght@400;600&display=swap" media="print" onload="this.media='all';this.onload=null">
 <noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;600&family=JetBrains+Mono:wght@400&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
 </noscript>
 
 {{- /* Ahrefs Web Analytics - 改用 defer 提升性能 */ -}}

@@ -1,0 +1,61 @@
+# Cloudflare Pages Headers配置
+# 此文件配置缓存策略和安全头，提升网站性能和安全性
+
+# 全局安全头
+/*
+  X-Frame-Options: SAMEORIGIN
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: interest-cohort=()
+
+# 字体文件 - 1年缓存
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+# 静态资源（CSS/JS带fingerprint）- 1年缓存
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/css/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/js/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# 图片资源 - 1年缓存
+/images/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.jpeg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.ico
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML文件 - 1小时缓存，必须重新验证
+/*.html
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# 根路径和feed
+/
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/index.xml
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/index.json
+  Cache-Control: public, max-age=3600, must-revalidate

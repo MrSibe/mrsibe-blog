@@ -1,0 +1,21 @@
+{{- /* 优化的Google Analytics 4配置 - 异步加载，延迟初始化 */ -}}
+{{- with site.Config.Services.GoogleAnalytics.ID -}}
+<!-- Google Analytics 4 - 异步优化版本 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
+<script>
+  // 延迟初始化GA，避免阻塞页面渲染
+  function initGA() {
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '{{ . }}');
+  }
+
+  // 使用requestIdleCallback延迟初始化，或在页面加载1秒后初始化
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(initGA);
+  } else {
+    setTimeout(initGA, 1000);
+  }
+</script>
+{{- end -}}
