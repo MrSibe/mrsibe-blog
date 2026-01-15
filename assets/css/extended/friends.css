@@ -1,0 +1,387 @@
+/* ==================== 友情链接页面样式（优化版） ====================
+ * 设计理念：Digital Minimalism + 纸张质感
+ * 优化方向：增强视觉细节、保持克制美学
+ * 继承自：theme-colors.css, fonts.css, sidebar.css, home.css
+ * =========================================================== */
+
+/* ==================== 页面头部 ==================== */
+.friends-page {
+  animation: fadeInUp 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+.friends-header {
+  text-align: center;
+  margin-bottom: calc(var(--gap) * 3);
+  padding-bottom: calc(var(--gap) * 2);
+  border-bottom: 2px solid var(--border);
+  animation: fadeInUp 0.8s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+.friends-header h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  color: var(--primary);
+  margin-bottom: var(--gap);
+  letter-spacing: -0.01em;
+}
+
+.friends-intro {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.friends-intro a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-decoration-color: var(--border);
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.2s ease-out;
+}
+
+.friends-intro a:hover {
+  text-decoration-color: var(--primary);
+}
+
+/* ==================== 友链网格布局 ==================== */
+.friends-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: calc(var(--gap) * 1.5);
+  animation: fadeInUp 0.8s ease-out 0.4s forwards;
+  opacity: 0;
+}
+
+/* ==================== 友链卡片 ==================== */
+.friend-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: calc(var(--gap) * 2);
+  /* 优化：增加微妙的径向渐变背景，增强纸张质感 */
+  background:
+    radial-gradient(circle at top right, rgba(232, 227, 220, 0.3) 0%, transparent 50%),
+    var(--entry);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: var(--content);
+  /* 优化：使用更自然的缓动函数 */
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* 优化：增强阴影层次，带有温暖色调 */
+  box-shadow:
+    0 1px 3px rgba(43, 37, 32, 0.04),
+    0 1px 2px rgba(43, 37, 32, 0.02),
+    0 0 0 1px rgba(224, 216, 207, 0.1);
+  overflow: hidden;
+  cursor: pointer;
+  /* 优化：入场动画增加缩放和轻微旋转 */
+  animation: cardFadeIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  opacity: 0;
+}
+
+/* 优化后的卡片渐入动画 - 增加缩放和旋转 */
+@keyframes cardFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95) rotate(-1deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0);
+  }
+}
+
+/* 优化：卡片悬停效果 - 增加倾斜和光晕 */
+.friend-card:hover {
+  transform: translateY(-8px) rotateX(2deg);
+  border-color: rgba(107, 93, 84, 0.3);
+  /* 增加温暖色调的光晕效果 */
+  box-shadow:
+    0 16px 32px rgba(43, 37, 32, 0.12),
+    0 8px 16px rgba(43, 37, 32, 0.06),
+    0 0 0 1px rgba(107, 93, 84, 0.15),
+    0 0 40px rgba(232, 227, 220, 0.4);
+}
+
+/* 悬停时链接图标旋转 */
+.friend-card:hover .friend-link-icon svg {
+  transform: rotate(45deg) scale(1.1);
+}
+
+/* 悬停时头像轻微旋转 + 缩放 */
+.friend-card:hover .friend-avatar img,
+.friend-card:hover .friend-avatar-fallback {
+  transform: rotate(5deg) scale(1.05);
+  border-color: var(--primary);
+  /* 优化：增加微妙的阴影 */
+  box-shadow: 0 4px 12px rgba(43, 37, 32, 0.15);
+}
+
+/* ==================== 头像样式 ==================== */
+.friend-avatar {
+  width: 80px;
+  height: 80px;
+  margin-bottom: calc(var(--gap) * 1.2);
+  flex-shrink: 0;
+}
+
+.friend-avatar img,
+.friend-avatar-fallback {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 3px solid var(--border);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  object-fit: cover;
+}
+
+/* 优化：首字母头像 - 更丰富的渐变和纹理 */
+.friend-avatar-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* 优化：使用更大胆的多色渐变 */
+  background:
+    linear-gradient(135deg,
+      rgba(232, 227, 220, 0.9) 0%,
+      rgba(224, 216, 207, 0.7) 50%,
+      rgba(232, 227, 220, 0.9) 100%
+    ),
+    /* 增加微妙的噪点纹理 */
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 2px,
+      rgba(43, 37, 32, 0.02) 2px,
+      rgba(43, 37, 32, 0.02) 4px
+    );
+  color: var(--primary);
+  font-size: 32px;
+  font-weight: 700;
+  font-family: var(--base-font);
+  text-transform: uppercase;
+  /* 优化：增加文字阴影增强可读性 */
+  text-shadow: 0 1px 2px rgba(255, 254, 249, 0.8);
+}
+
+/* ==================== 友链信息 ==================== */
+.friend-info {
+  text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.friend-name {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--primary);
+  margin: 0 0 calc(var(--gap) * 0.5) 0;
+  transition: color 0.2s ease-out;
+}
+
+.friend-card:hover .friend-name {
+  color: var(--content);
+}
+
+.friend-description {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--secondary);
+  margin: 0;
+  /* 限制两行，超出显示省略号 */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ==================== 访问图标 ==================== */
+.friend-link-icon {
+  position: absolute;
+  top: calc(var(--gap) * 1.2);
+  right: calc(var(--gap) * 1.2);
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--tertiary);
+  color: var(--secondary);
+  opacity: 0.6;
+  transition: all 0.3s ease-out;
+}
+
+.friend-card:hover .friend-link-icon {
+  opacity: 1;
+  background: var(--primary);
+  color: var(--theme);
+  /* 优化：增加微妙的阴影 */
+  box-shadow: 0 2px 8px rgba(43, 37, 32, 0.2);
+}
+
+.friend-link-icon svg {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==================== 空状态 ==================== */
+.friends-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 16px;
+  color: var(--secondary);
+  padding: calc(var(--gap) * 4) 0;
+}
+
+/* ==================== 淡入上移动画（复用 home.css） ==================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==================== 响应式设计 ==================== */
+
+/* 中屏设备 (<=1200px): 2列布局 */
+@media screen and (max-width: 1200px) {
+  .friends-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 小屏设备 (<=768px): 1列布局 */
+@media screen and (max-width: 768px) {
+  .friends-grid {
+    grid-template-columns: 1fr;
+    gap: var(--gap);
+  }
+
+  .friends-header {
+    margin-bottom: calc(var(--gap) * 2);
+    padding-bottom: var(--gap);
+  }
+
+  .friends-header h1 {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+  }
+
+  .friend-card {
+    padding: calc(var(--gap) * 1.5);
+  }
+
+  /* 移动端禁用3D倾斜效果，避免溢出 */
+  .friend-card:hover {
+    transform: translateY(-6px);
+  }
+
+  .friend-avatar {
+    width: 64px;
+    height: 64px;
+  }
+
+  .friend-avatar-fallback {
+    font-size: 28px;
+  }
+
+  .friend-name {
+    font-size: 18px;
+  }
+
+  .friend-description {
+    font-size: 13px;
+  }
+}
+
+/* ==================== 深色模式优化 ==================== */
+:root[data-theme="dark"] .friend-card {
+  /* 深色模式下使用更深的阴影 */
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(65, 66, 68, 0.3);
+  /* 深色模式下的背景渐变 */
+  background:
+    radial-gradient(circle at top right, rgba(65, 66, 68, 0.3) 0%, transparent 50%),
+    var(--entry);
+}
+
+:root[data-theme="dark"] .friend-card:hover {
+  box-shadow:
+    0 16px 32px rgba(0, 0, 0, 0.6),
+    0 8px 16px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(155, 156, 157, 0.2),
+    0 0 40px rgba(65, 66, 68, 0.4);
+}
+
+/* 深色模式下的首字母头像 */
+:root[data-theme="dark"] .friend-avatar-fallback {
+  background:
+    linear-gradient(135deg,
+      rgba(65, 66, 68, 0.9) 0%,
+      rgba(51, 51, 51, 0.7) 50%,
+      rgba(65, 66, 68, 0.9) 100%
+    ),
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 2px,
+      rgba(218, 218, 219, 0.02) 2px,
+      rgba(218, 218, 219, 0.02) 4px
+    );
+  text-shadow: 0 1px 2px rgba(29, 30, 32, 0.8);
+}
+
+/* ==================== 减少动画模式（无障碍） ==================== */
+@media (prefers-reduced-motion: reduce) {
+  .friends-page,
+  .friends-header,
+  .friends-grid,
+  .friend-card,
+  .friend-avatar img,
+  .friend-avatar-fallback,
+  .friend-link-icon svg {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+  }
+
+  .friend-card:hover {
+    transform: none;
+  }
+
+  .friend-card:hover .friend-avatar img,
+  .friend-card:hover .friend-avatar-fallback,
+  .friend-card:hover .friend-link-icon svg {
+    transform: none;
+  }
+}
+
+/* ==================== 高对比度模式（无障碍） ==================== */
+@media (prefers-contrast: high) {
+  .friend-card {
+    border-width: 2px;
+  }
+
+  .friend-avatar img,
+  .friend-avatar-fallback {
+    border-width: 4px;
+  }
+
+  .friends-header {
+    border-bottom-width: 3px;
+  }
+}

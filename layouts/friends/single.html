@@ -1,0 +1,62 @@
+{{- define "main" }}
+
+{{- /* 友链页面主体 */ -}}
+<article class="friends-page">
+  {{- /* 页面标题和描述 */ -}}
+  <header class="friends-header">
+    <h1>{{ .Title }}</h1>
+    {{- if .Content }}
+    <div class="friends-intro">
+      {{ .Content }}
+    </div>
+    {{- end }}
+  </header>
+
+  {{- /* 友链卡片网格 */ -}}
+  <div class="friends-grid">
+    {{- $friends := site.Data.friends.friends }}
+    {{- if $friends }}
+      {{- range $index, $friend := $friends }}
+      <a href="{{ $friend.url }}"
+         class="friend-card"
+         target="_blank"
+         rel="noopener noreferrer"
+         style="animation-delay: {{ mul $index 0.1 }}s">
+
+        {{- /* 头像部分 */ -}}
+        <div class="friend-avatar">
+          {{- if and $friend.avatar (ne $friend.avatar "") }}
+            <img src="{{ $friend.avatar }}"
+                 alt="{{ $friend.name }}"
+                 loading="lazy">
+          {{- else }}
+            {{- /* 首字母头像 fallback */ -}}
+            <div class="friend-avatar-fallback">
+              {{ substr $friend.name 0 1 }}
+            </div>
+          {{- end }}
+        </div>
+
+        {{- /* 信息部分 */ -}}
+        <div class="friend-info">
+          <h3 class="friend-name">{{ $friend.name }}</h3>
+          <p class="friend-description">{{ $friend.description }}</p>
+        </div>
+
+        {{- /* 访问图标 */ -}}
+        <div class="friend-link-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+            <polyline points="15 3 21 3 21 9"></polyline>
+            <line x1="10" y1="14" x2="21" y2="3"></line>
+          </svg>
+        </div>
+      </a>
+      {{- end }}
+    {{- else }}
+      <p class="friends-empty">暂无友链</p>
+    {{- end }}
+  </div>
+</article>
+
+{{- end }}

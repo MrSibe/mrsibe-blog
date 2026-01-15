@@ -19,3 +19,11 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="theme-color" content="#2e2e33" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#fdfbf7" media="(prefers-color-scheme: light)">
+
+{{- /* 友链页面专用样式 */ -}}
+{{- if eq .Type "friends" }}
+{{ $friendsStyle := resources.Get "css/extended/friends.css" }}
+{{ if $friendsStyle }}
+<link rel="stylesheet" href="{{ $friendsStyle.RelPermalink }}">
+{{ end }}
+{{- end }}
