@@ -1,14 +1,12 @@
-/* ==================== 三列布局容器 ==================== */
+/* ==================== 两列布局容器 ==================== */
 .main-wrapper {
-  /* 理想宽度：220px(左) + 768px(中,含padding) + 220px(右) + 间距 */
-  width: calc(
-    220px + var(--main-width) + var(--gap) * 2 + 220px + var(--gap) * 6
-  );
+  /* 理想宽度：240px(左) + 768px(中,含padding) + 间距 */
+  width: calc(240px + var(--main-width) + var(--gap) * 2 + var(--gap) * 4);
   /* 不超过视口宽度，避免溢出 */
   max-width: 100%;
   display: flex;
   align-items: flex-start; /* 顶部对齐 */
-  gap: calc(var(--gap) * 2);
+  gap: var(--gap);
   margin: 0 auto;
   padding: 0 var(--gap);
 
@@ -16,18 +14,17 @@
   min-height: 100vh;
 }
 
-/* ==================== 左侧边栏 - 个人简介 ==================== */
+/* ==================== 左侧边栏 - 个人简介+分类+标签 ==================== */
 .sidebar-left {
-  /* 基础宽度 220px，可以收缩但不增长 */
-  flex: 0 1 220px;
+  /* 基础宽度 240px，可以收缩但不增长 */
+  flex: 0 1 240px;
   /* 收缩时的最小宽度 */
-  min-width: 160px;
-  /* 添加上 padding，使内容与 main 的内容顶部对齐 */
-  padding-top: var(--gap);
+  min-width: 180px;
+  /* 移除顶部 padding，让第一个卡片与主内容顶部对齐 */
 
   /* 智能粘性定位 */
   position: sticky;
-  top: calc(var(--header-height) + var(--gap));
+  top: var(--gap);
   align-self: start;
 }
 
@@ -37,11 +34,16 @@
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: calc(var(--gap) * 1.2);
+  margin-bottom: var(--gap);
+  /* 添加顶部间距，与主内容顶部对齐 */
+  margin-top: var(--gap);
   text-align: center;
   box-shadow:
     0 1px 3px rgba(0, 0, 0, 0.03),
     0 1px 2px rgba(0, 0, 0, 0.02);
-  transition: box-shadow 0.2s ease-out, transform 0.2s ease-out;
+  transition:
+    box-shadow 0.2s ease-out,
+    transform 0.2s ease-out;
 }
 
 .profile-card:hover {
@@ -63,7 +65,10 @@
   height: 80px;
   border-radius: 50%;
   border: 3px solid var(--border);
-  transition: opacity 0.2s ease-out, filter 0.2s ease-out, border-color 0.2s ease-out;
+  transition:
+    opacity 0.2s ease-out,
+    filter 0.2s ease-out,
+    border-color 0.2s ease-out;
   display: block;
 }
 
@@ -116,14 +121,19 @@
   border-radius: 50%;
   background: var(--tertiary);
   color: var(--primary);
-  transition: background-color 0.2s ease-out, color 0.2s ease-out, box-shadow 0.2s ease-out;
+  transition:
+    background-color 0.2s ease-out,
+    color 0.2s ease-out,
+    box-shadow 0.2s ease-out;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .profile-links a:hover {
   background: var(--primary);
   color: var(--theme);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08);
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.12),
+    0 2px 4px rgba(0, 0, 0, 0.08);
 }
 
 .profile-links svg {
@@ -145,21 +155,6 @@
 /* 当 main 不在 main-wrapper 中时（归档、分类、标签、友链页面），居中显示 */
 body > .main {
   margin: 0 auto;
-}
-
-/* ==================== 右侧边栏 - 分类和标签 ==================== */
-.sidebar-right {
-  /* 基础宽度 220px，可以收缩但不增长 */
-  flex: 0 1 220px;
-  /* 收缩时的最小宽度 */
-  min-width: 160px;
-  /* 添加上 padding，使内容与 main 的内容顶部对齐 */
-  padding-top: var(--gap);
-
-  /* 智能粘性定位 */
-  position: sticky;
-  top: calc(var(--header-height) + var(--gap));
-  align-self: start;
 }
 
 /* ==================== 侧边栏滚动条美化 ==================== */
@@ -186,6 +181,37 @@ body > .main {
 
 .sidebar-section:last-child {
   margin-bottom: 0;
+}
+
+/* 标题和查看更多的容器 */
+.sidebar-title-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: calc(var(--gap) * 0.6);
+  padding-bottom: calc(var(--gap) * 0.4);
+  border-bottom: 2px solid var(--border);
+}
+
+.sidebar-title-inline {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--primary);
+  margin: 0;
+}
+
+/* 查看更多链接 */
+.sidebar-more-link {
+  font-size: 13px;
+  color: var(--secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  white-space: nowrap;
+}
+
+.sidebar-more-link:hover {
+  color: var(--primary);
+  text-decoration: underline;
 }
 
 /* 侧边栏标题 */
@@ -241,7 +267,10 @@ body > .main {
   border-radius: calc(var(--radius) / 2);
   text-decoration: none;
   color: var(--content);
-  transition: background-color 0.2s ease-out, color 0.2s ease-out, transform 0.15s ease-out;
+  transition:
+    background-color 0.2s ease-out,
+    color 0.2s ease-out,
+    transform 0.15s ease-out;
   background: transparent;
 }
 
@@ -287,7 +316,10 @@ body > .main {
   font-weight: 500;
   color: var(--primary);
   text-decoration: none;
-  transition: background-color 0.15s ease-out, color 0.15s ease-out, box-shadow 0.15s ease-out;
+  transition:
+    background-color 0.15s ease-out,
+    color 0.15s ease-out,
+    box-shadow 0.15s ease-out;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   position: relative;
   overflow: hidden;
@@ -295,7 +327,7 @@ body > .main {
 
 /* 标签涟漪效果 */
 .tag-item::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   background: radial-gradient(
@@ -310,7 +342,9 @@ body > .main {
 .tag-item:hover {
   background: var(--primary);
   color: var(--theme);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15), 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .tag-item:hover::after {
@@ -326,10 +360,9 @@ body > .main {
 
 /* ==================== 响应式设计 ==================== */
 
-/* 中小屏设备 (<=1200px): 同时隐藏左右侧边栏，切换到单列布局 */
+/* 中小屏设备 (<=1200px): 隐藏左侧边栏，切换到单列布局 */
 @media screen and (max-width: 1200px) {
-  .sidebar-left,
-  .sidebar-right {
+  .sidebar-left {
     display: none;
   }
 

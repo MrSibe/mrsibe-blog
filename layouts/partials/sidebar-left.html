@@ -29,4 +29,49 @@
             </a>
         </div>
     </div>
+
+    {{- /* 分类列表 - 显示前5个 */ -}}
+    <div class="sidebar-section">
+        <div class="sidebar-title-wrapper">
+            <h3 class="sidebar-title-inline">分类</h3>
+            <a href="{{ "/categories/" | relLangURL }}" class="sidebar-more-link">查看更多</a>
+        </div>
+        {{- if site.Taxonomies.categories }}
+        <ul class="sidebar-categories">
+            {{- range first 5 (site.Taxonomies.categories.ByCount.Reverse) }}
+            <li>
+                <a href="{{ "/categories/" | relLangURL }}{{ .Page.Title | urlize }}">
+                    <span class="category-name">{{ .Page.Title }}</span>
+                    <span class="category-count">{{ .Count }}</span>
+                </a>
+            </li>
+            {{- end }}
+        </ul>
+        {{- else }}
+        <p class="sidebar-empty">暂无分类</p>
+        {{- end }}
+    </div>
+
+    {{- /* 标签云 - 按使用频率排序，显示前10个 */ -}}
+    <div class="sidebar-section">
+        <div class="sidebar-title-wrapper">
+            <h3 class="sidebar-title-inline">热门标签</h3>
+            <a href="{{ "/tags/" | relLangURL }}" class="sidebar-more-link">查看更多</a>
+        </div>
+        {{- if site.Taxonomies.tags }}
+        <div class="sidebar-tags">
+            {{- $sortedTags := slice }}
+            {{- range $name, $taxonomy := site.Taxonomies.tags }}
+                {{- $sortedTags = $sortedTags | append (dict "name" $name "count" $taxonomy.Count) }}
+            {{- end }}
+            {{- range first 10 (sort $sortedTags "count" "desc") }}
+            <a href="{{ "/tags/" | relLangURL }}{{ .name | urlize }}" class="tag-item">
+                {{ .name }}<sup>{{ .count }}</sup>
+            </a>
+            {{- end }}
+        </div>
+        {{- else }}
+        <p class="sidebar-empty">暂无标签</p>
+        {{- end }}
+    </div>
 </aside>
