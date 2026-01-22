@@ -436,3 +436,186 @@ body > .main {
     border-width: 4px;
   }
 }
+
+/* ==================== 侧栏文章目录 (TOC) ==================== */
+
+/* TOC 包装器 - 卡片式设计 */
+.sidebar-toc-wrapper {
+  /* 继承 sidebar-section 的基础样式 */
+  position: relative;
+
+  /* 滚动优化 */
+  max-height: calc(100vh - var(--header-height) - var(--gap) * 2);
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  /* 自定义滚动条 */
+  scrollbar-width: thin;
+  scrollbar-color: var(--tertiary) transparent;
+}
+
+/* Webkit 浏览器滚动条样式 */
+.sidebar-toc-wrapper::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar-toc-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-toc-wrapper::-webkit-scrollbar-thumb {
+  background: var(--tertiary);
+  border-radius: 3px;
+}
+
+.sidebar-toc-wrapper::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary);
+}
+
+/* 调整侧栏 TOC 内部样式 */
+.sidebar-toc-wrapper .toc {
+  /* 移除原有的外边距和边框 */
+  margin: 0;
+  border: none;
+  background: transparent;
+  border-radius: 0;
+  padding: 0;
+
+  /* 调整内边距 */
+  font-size: 14px;
+}
+
+/* 调整 summary 样式 */
+.sidebar-toc-wrapper .toc details summary {
+  margin-inline-start: 0;
+  padding: calc(var(--gap) * 0.4) 0;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--primary);
+  cursor: pointer;
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* 添加展开/折叠图标 */
+.sidebar-toc-wrapper .toc details summary::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--secondary);
+  border-bottom: 2px solid var(--secondary);
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+  margin-left: 8px;
+}
+
+.sidebar-toc-wrapper .toc details[open] summary::after {
+  transform: rotate(-135deg);
+}
+
+/* 调整 inner 容器 */
+.sidebar-toc-wrapper .toc .inner {
+  margin: 0;
+  padding: calc(var(--gap) * 0.4) 0;
+  opacity: 1;
+
+  /* 限制最大高度，防止过长 */
+  max-height: calc(100vh - var(--header-height) - var(--gap) * 4);
+  overflow-y: auto;
+}
+
+/* 优化 TOC 列表样式 */
+.sidebar-toc-wrapper .toc ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sidebar-toc-wrapper .toc li {
+  margin: 4px 0;
+  padding-left: 0;
+}
+
+/* 嵌套列表 */
+.sidebar-toc-wrapper .toc li ul {
+  margin-left: calc(var(--gap) * 0.5);
+  margin-top: 4px;
+}
+
+/* TOC 链接样式 */
+.sidebar-toc-wrapper .toc a {
+  display: block;
+  padding: 6px 10px;
+  border-radius: 4px;
+  color: var(--content);
+  text-decoration: none;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    transform 0.15s ease;
+  font-size: 13px;
+  line-height: 1.5;
+
+  /* 文本溢出处理 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sidebar-toc-wrapper .toc a:hover {
+  background: var(--tertiary);
+  color: var(--primary);
+  transform: translateX(4px);
+  box-shadow: none; /* 移除原有的下划线效果 */
+}
+
+/* 当前活动章节样式（通过 JS 或 CSS Scrollspy 实现） */
+.sidebar-toc-wrapper .toc a.active {
+  background: var(--primary);
+  color: var(--theme);
+  font-weight: 600;
+}
+
+/* 二级标题缩进 */
+.sidebar-toc-wrapper .toc li li a {
+  padding-left: 20px;
+  font-size: 12px;
+}
+
+/* 三级标题缩进 */
+.sidebar-toc-wrapper .toc li li li a {
+  padding-left: 32px;
+  font-size: 12px;
+}
+
+/* 深色模式优化 */
+:root[data-theme="dark"] .sidebar-toc-wrapper .toc a:hover {
+  background: var(--tertiary);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+:root[data-theme="dark"] .sidebar-toc-wrapper .toc a.active {
+  background: var(--primary);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* 减少动画模式 */
+@media (prefers-reduced-motion: reduce) {
+  .sidebar-toc-wrapper .toc a,
+  .sidebar-toc-wrapper .toc details summary {
+    transition: none;
+  }
+
+  .sidebar-toc-wrapper .toc a:hover {
+    transform: none;
+  }
+}
+
+/* 响应式：中小屏设备隐藏侧栏 TOC */
+@media screen and (max-width: 1200px) {
+  .sidebar-toc-wrapper {
+    display: none;
+  }
+}

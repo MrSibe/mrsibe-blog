@@ -1,0 +1,341 @@
+/* ==================== 文章上方的标签 ==================== */
+
+.post-tags-above {
+  margin: calc(var(--gap) * 0.5) 0;
+  padding: 0;
+}
+
+.post-tags-above .post-tags {
+  margin: 0;
+}
+
+/* 在 post-header 底部添加分割线 */
+.post-header {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: calc(var(--gap) * 0.8);
+  margin-bottom: calc(var(--gap) * 0.8);
+}
+
+/* 移动端优化 */
+@media screen and (max-width: 768px) {
+  .post-tags-above .post-tags {
+    gap: 8px;
+  }
+
+  .post-tags-above .post-tags a {
+    font-size: 13px;
+    padding: 0 12px;
+  }
+}
+
+/* ==================== 文章翻页导航按钮 ==================== */
+
+/* 翻页容器 */
+nav.paginav {
+  display: flex;
+  gap: calc(var(--gap) * 1.5);
+  margin-top: calc(var(--gap) * 1.5);
+  margin-bottom: calc(var(--gap) * 1.5);
+  background: transparent !important;
+  border: none !important;
+}
+
+/* 翻页按钮基础样式 - 卡片化设计 */
+nav.paginav a {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: calc(var(--gap) * 0.5);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--entry);
+  text-decoration: none;
+
+  /* 纸张质感阴影 */
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.03),
+    0 1px 2px rgba(0, 0, 0, 0.02);
+
+  /* 统一的过渡效果 */
+  transition:
+    transform 0.2s ease-out,
+    box-shadow 0.2s ease-out,
+    border-color 0.2s ease-out,
+    background-color 0.2s ease-out;
+
+  overflow: hidden;
+}
+
+/* 左侧装饰条 - 统一的hover模式标识 */
+nav.paginav a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--primary);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.25s ease-out;
+  border-radius: var(--radius) 0 0 var(--radius);
+}
+
+/* 按钮宽度分配 */
+nav.paginav .prev,
+nav.paginav .next {
+  width: 50%;
+}
+
+/* 下一篇按钮右对齐 */
+nav.paginav .next {
+  margin-inline-start: auto;
+  text-align: right;
+}
+
+/* RTL支持 */
+[dir="rtl"] nav.paginav .next {
+  text-align: left;
+}
+
+[dir="rtl"] nav.paginav a::before {
+  left: auto;
+  right: 0;
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+/* ==================== 统一的Hover效果 ==================== */
+
+nav.paginav a:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.08),
+    0 4px 8px rgba(0, 0, 0, 0.04);
+  border-color: var(--primary);
+  background-color: var(--tertiary);
+}
+
+nav.paginav a:hover::before {
+  transform: scaleY(1);
+}
+
+/* Active点击状态 */
+nav.paginav a:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.06),
+    0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+/* ==================== 文字样式优化 ==================== */
+
+/* 方向标签（上一篇/下一篇） */
+nav.paginav .title {
+  display: inline-flex;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--secondary);
+  margin-bottom: 0;
+  line-height: 1.4;
+  transition:
+    color 0.2s ease-out,
+    transform 0.2s ease-out;
+}
+
+/* 文章标题 */
+nav.paginav a span:not(.title) {
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--primary);
+  transition:
+    color 0.2s ease-out,
+    transform 0.2s ease-out;
+
+  /* 文本溢出处理 */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Hover时标题颜色和位移动画 */
+nav.paginav a:hover .title {
+  color: var(--primary);
+}
+
+nav.paginav a:hover span:not(.title) {
+  color: var(--primary);
+  transform: translateX(4px);
+}
+
+[dir="rtl"] nav.paginav a:hover span:not(.title) {
+  transform: translateX(-4px);
+}
+
+/* 上一篇按钮 - 箭头在左侧 */
+nav.paginav .prev .title {
+  justify-content: flex-start;
+}
+
+/* 下一篇按钮 - 箭头在右侧 */
+nav.paginav .next .title {
+  justify-content: flex-end;
+}
+
+/* ==================== 深色模式优化 ==================== */
+
+:root[data-theme="dark"] nav.paginav a {
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.2),
+    0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+:root[data-theme="dark"] nav.paginav a:hover {
+  box-shadow:
+    0 8px 20px rgba(0, 0, 0, 0.3),
+    0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+:root[data-theme="dark"] nav.paginav a:active {
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.25),
+    0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+/* ==================== 减少动画模式 (无障碍支持) ==================== */
+
+@media (prefers-reduced-motion: reduce) {
+  nav.paginav a,
+  nav.paginav a::before,
+  nav.paginav .title,
+  nav.paginav a span:not(.title) {
+    transition: none;
+  }
+
+  nav.paginav a:hover,
+  nav.paginav a:active {
+    transform: none;
+  }
+
+  nav.paginav a:hover::before {
+    transform: none;
+  }
+
+  nav.paginav a:hover span:not(.title) {
+    transform: none;
+  }
+}
+
+/* ==================== 高对比度模式 ==================== */
+
+@media (prefers-contrast: high) {
+  nav.paginav a {
+    border-width: 2px;
+  }
+
+  nav.paginav a::before {
+    width: 4px;
+  }
+
+  nav.paginav .title {
+    font-weight: 700;
+  }
+
+  nav.paginav a span:not(.title) {
+    font-weight: 600;
+  }
+}
+
+/* ==================== 响应式设计 ==================== */
+
+/* 平板设备 */
+@media screen and (max-width: 1024px) {
+  nav.paginav {
+    gap: var(--gap);
+  }
+
+  nav.paginav a {
+    padding: calc(var(--gap) * 0.5);
+  }
+
+  nav.paginav .title {
+    font-size: 12px;
+  }
+
+  nav.paginav a span:not(.title) {
+    font-size: 14px;
+  }
+}
+
+/* 移动端优化 */
+@media screen and (max-width: 768px) {
+  nav.paginav {
+    flex-direction: column;
+    gap: calc(var(--gap) * 0.6);
+  }
+
+  nav.paginav .prev,
+  nav.paginav .next {
+    width: 100%;
+  }
+
+  nav.paginav .next {
+    margin-inline-start: 0;
+  }
+
+  nav.paginav a {
+    padding: calc(var(--gap) * 0.45);
+  }
+
+  nav.paginav a:hover {
+    transform: translateY(-1px);
+  }
+
+  nav.paginav a:hover span:not(.title) {
+    transform: translateX(2px);
+  }
+
+  [dir="rtl"] nav.paginav a:hover span:not(.title) {
+    transform: translateX(-2px);
+  }
+}
+
+/* 小屏移动设备 */
+@media screen and (max-width: 480px) {
+  nav.paginav a {
+    padding: 10px 12px;
+  }
+
+  nav.paginav .title {
+    font-size: 11px;
+    margin-bottom: 3px;
+  }
+
+  nav.paginav a span:not(.title) {
+    font-size: 13px;
+  }
+}
+
+/* ==================== Focus状态优化 (键盘导航) ==================== */
+
+nav.paginav a:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+nav.paginav a:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ==================== 打印样式 ==================== */
+
+@media print {
+  nav.paginav {
+    display: none;
+  }
+}
