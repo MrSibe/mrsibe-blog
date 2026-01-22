@@ -1,14 +1,13 @@
 /* ==================== 两列布局容器 ==================== */
 .main-wrapper {
-  /* 理想宽度：240px(左) + 768px(中,含padding) + 间距 */
-  width: calc(240px + var(--main-width) + var(--gap) * 2 + var(--gap) * 4);
-  /* 不超过视口宽度，避免溢出 */
+  /* 不限制宽度，让内容自然展开 */
+  width: fit-content;
   max-width: 100%;
   display: flex;
   align-items: flex-start; /* 顶部对齐 */
-  gap: var(--gap);
-  margin: 0 auto;
-  padding: 0 var(--gap);
+  gap: 8px; /* 缩小侧栏和主内容之间的间距 */
+  margin: 0 auto; /* 水平居中 */
+  padding: 0;
 
   /* 确保容器有足够的高度，让 sticky 定位能够工作 */
   min-height: 100vh;
@@ -16,11 +15,12 @@
 
 /* ==================== 左侧边栏 - 个人简介+分类+标签 ==================== */
 .sidebar-left {
-  /* 基础宽度 240px，可以收缩但不增长 */
-  flex: 0 1 240px;
+  /* 基础宽度 320px，加宽侧栏 */
+  flex: 0 1 320px;
   /* 收缩时的最小宽度 */
-  min-width: 180px;
-  /* 移除顶部 padding，让第一个卡片与主内容顶部对齐 */
+  min-width: 260px;
+  /* 添加四周 padding，与 main 保持一致 */
+  padding: var(--gap);
 
   /* 智能粘性定位 */
   position: sticky;
@@ -35,8 +35,6 @@
   border-radius: var(--radius);
   padding: calc(var(--gap) * 1.2);
   margin-bottom: var(--gap);
-  /* 添加顶部间距，与主内容顶部对齐 */
-  margin-top: var(--gap);
   text-align: center;
   box-shadow:
     0 1px 3px rgba(0, 0, 0, 0.03),
@@ -143,18 +141,20 @@
 
 /* ==================== 主内容区域 ==================== */
 .main {
-  /* 固定768px (720px内容 + 48px padding)，不收缩以保持可读性 */
-  flex: 0 0 calc(var(--main-width) + var(--gap) * 2);
-  max-width: calc(var(--main-width) + var(--gap) * 2);
+  /* 固定 720px 内容宽度，不收缩以保持可读性 */
+  flex: 0 0 var(--main-width);
+  max-width: var(--main-width);
   min-height: calc(100vh - var(--header-height) - var(--footer-height));
   margin: 0;
+  /* 添加 padding，保持内容可读性 */
   padding: var(--gap);
-  /* 左右各24px padding，实际内容宽度720px */
 }
 
-/* 当 main 不在 main-wrapper 中时（归档、分类、标签、友链页面），居中显示 */
+/* 当 main 不在 main-wrapper 中时（归档、分类、标签、友链页面），居中显示并添加 padding */
 body > .main {
+  width: calc(var(--main-width) + var(--gap) * 2);
   margin: 0 auto;
+  padding: var(--gap);
 }
 
 /* ==================== 侧边栏滚动条美化 ==================== */
@@ -367,9 +367,8 @@ body > .main {
   }
 
   .main-wrapper {
-    /* 重置宽度，避免溢出 */
-    width: auto;
-    max-width: calc(var(--main-width) + var(--gap) * 2);
+    /* 单列布局，主内容自然宽度 */
+    width: fit-content;
     justify-content: center;
   }
 
