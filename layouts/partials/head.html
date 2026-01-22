@@ -68,6 +68,20 @@
 {{- $extended := (resources.Match "css/extended/*.css") | resources.Concat "assets/css/extended.css" | resources.Minify
 }}
 
+{{- /* 添加项目特定的 extended CSS */}}
+{{- $projectExtendedTerms := (resources.Get "css/extended/terms.css") }}
+{{- $projectExtendedPostEntry := (resources.Get "css/extended/post-entry.css") }}
+{{- $projectExtendedArchive := (resources.Get "css/extended/archive.css") }}
+{{- if $projectExtendedTerms }}
+{{- $extended = (slice $extended $projectExtendedTerms) | resources.Concat "assets/css/extended-full.css" | resources.Minify }}
+{{- end }}
+{{- if $projectExtendedPostEntry }}
+{{- $extended = (slice $extended $projectExtendedPostEntry) | resources.Concat "assets/css/extended-complete.css" | resources.Minify }}
+{{- end }}
+{{- if $projectExtendedArchive }}
+{{- $extended = (slice $extended $projectExtendedArchive) | resources.Concat "assets/css/extended-with-archive.css" | resources.Minify }}
+{{- end }}
+
 {{- /* bundle all required css */}}
 {{- /* Add extended css after theme style */ -}}
 {{- $stylesheet := (slice $license_css $core $extended) | resources.Concat "assets/css/stylesheet.css" }}
