@@ -1,0 +1,7 @@
+{{- /* 扩展的 footer 部分，用于添加自定义脚本 */ -}}
+
+{{- /* 智能隐藏/显示顶部导航栏脚本 */ -}}
+{{ $smartHeaderScript := resources.Get "js/smart-header.js" }}
+{{ if $smartHeaderScript }}
+<script src="{{ $smartHeaderScript.RelPermalink }}" defer></script>
+{{- end }}

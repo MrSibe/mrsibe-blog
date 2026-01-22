@@ -70,6 +70,9 @@
         {{- if not site.Params.disableSearch }}
         {{- partial "search_modal.html" . -}}
         {{- end }}
+
+        {{- /* 扩展的 footer 部分（自定义脚本） */ -}}
+        {{- partial "extend_foot.html" . -}}
     </body>
 
 </html>

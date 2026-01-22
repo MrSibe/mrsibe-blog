@@ -1,0 +1,42 @@
+/* ==================== 智能隐藏/显示的顶部导航栏 ==================== */
+
+/* Header 固定在顶部 */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: var(--entry); /* 与卡片背景色一致 */
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Header 隐藏状态（向下滚动时） */
+.header.header-hidden {
+  transform: translateY(-100%);
+}
+
+/* Header 显示状态（向上滚动时） */
+.header.header-visible {
+  transform: translateY(0);
+}
+
+/* 为 body 添加顶部间距，防止内容被固定的 header 遮挡 */
+body {
+  padding-top: var(--header-height);
+}
+
+/* 响应式：移动端优化 */
+@media screen and (max-width: 768px) {
+  .header {
+    transition: transform 0.25s ease-in-out;
+  }
+}
+
+/* 减少动画模式 */
+@media (prefers-reduced-motion: reduce) {
+  .header {
+    transition: none;
+  }
+}
