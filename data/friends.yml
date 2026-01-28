@@ -5,14 +5,19 @@ friends:
   - name: "变星矿工"
     description: "业余变星搜寻爱好者"
     url: "https://www.vs-miner.top/"
-    avatar: ""  # 暂时为空，将显示首字母头像
+    avatar: "https://www.vs-miner.top/images/logo.svg"
 
   - name: "果砸的博客"
     description: "果砸的博客"
     url: "http://www.168hours.top:7777/"
-    avatar: ""  # 暂时为空，将显示首字母头像
+    avatar: "" # 暂时为空，将显示首字母头像
 
   - name: "Frederick"
     description: "Welcome to my Alter Ego's site!"
     url: "https://frederick2313072.github.io/"
-    avatar: ""  # 暂时为空，将显示首字母头像
+    avatar: "" # 暂时为空，将显示首字母头像
+
+  - name: "梦辰の小窝"
+    description: "Eagerly Anticipating Our Reunion"
+    url: "https://mc.mimeng.top"
+    avatar: "https://mc.mimeng.top/_astro/avatar.C0sWSkbw_Z2aF073.avif"
