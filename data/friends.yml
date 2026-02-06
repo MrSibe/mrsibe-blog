@@ -2,6 +2,26 @@
 # 按添加时间排序，最新的在前
 
 friends:
+  - name: "梦辰の小窝"
+    description: "Eagerly Anticipating Our Reunion"
+    url: "https://mc.mimeng.top"
+    avatar: "https://mc.mimeng.top/_astro/avatar.C0sWSkbw_Z2aF073.avif"
+
+  - name: "Soulter's Blog"
+    description: "The world is your canvas!"
+    url: "https://blog.soulter.top/"
+    avatar: "https://blog.soulter.top/assets/avatar.webp"
+
+  - name: "CAICAIIs.World"
+    description: "愚者在月影之中怀抱虚妄"
+    url: "https://caicaiis.cc/"
+    avatar: "https://caicaiis.cc/assets/images/photo.jpg"
+
+  - name: "Kinnari's Blog"
+    description: "梦想是成为一只 fumo!"
+    url: "https://kinnari-blog.vercel.app/"
+    avatar: "https://kinnariyamamatanha.github.io/avatar.png"
+
   - name: "变星矿工"
     description: "业余变星搜寻爱好者"
     url: "https://www.vs-miner.top/"
@@ -16,8 +36,3 @@ friends:
     description: "Welcome to my Alter Ego's site!"
     url: "https://frederick2313072.github.io/"
     avatar: "" # 暂时为空，将显示首字母头像
-
-  - name: "梦辰の小窝"
-    description: "Eagerly Anticipating Our Reunion"
-    url: "https://mc.mimeng.top"
-    avatar: "https://mc.mimeng.top/_astro/avatar.C0sWSkbw_Z2aF073.avif"
