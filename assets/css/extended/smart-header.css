@@ -9,7 +9,13 @@
   z-index: 1000;
   background: var(--entry); /* 与卡片背景色一致 */
   transition: transform 0.3s ease-in-out;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  /* 使用温暖色调的阴影 */
+  box-shadow: 0 2px 8px rgba(43, 37, 32, 0.08);
+}
+
+/* 深色模式阴影 */
+:root[data-theme="dark"] .header {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Header 隐藏状态（向下滚动时） */

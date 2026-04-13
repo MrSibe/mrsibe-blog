@@ -14,6 +14,42 @@
     /* 增加主内容宽度,提升阅读体验和卡片展示 */
     --main-width: 840px; /* 从 720px 增加到 840px */
 
+    /* ==================== 阴影系统 ==================== */
+    /* 卡片基础阴影 - 温暖色调的多层阴影 */
+    --shadow-card:
+        0 1px 3px rgba(43, 37, 32, 0.04),
+        0 1px 2px rgba(43, 37, 32, 0.02),
+        0 0 0 1px rgba(224, 216, 207, 0.1);
+
+    /* 卡片悬停阴影 - 增强的光晕效果 */
+    --shadow-card-hover:
+        0 16px 32px rgba(43, 37, 32, 0.12),
+        0 8px 16px rgba(43, 37, 32, 0.06),
+        0 0 0 1px rgba(107, 93, 84, 0.15),
+        0 0 40px rgba(232, 227, 220, 0.4);
+
+    /* 卡片点击阴影 */
+    --shadow-card-active:
+        0 2px 8px rgba(43, 37, 32, 0.08),
+        0 1px 3px rgba(43, 37, 32, 0.04);
+
+    /* ==================== 过渡动画系统 ==================== */
+    /* 卡片悬停过渡 - 弹性效果 */
+    --transition-card: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    /* 快速过渡 - 简单效果 */
+    --transition-fast: 0.2s ease-out;
+
+    /* 悬停位移 */
+    --hover-translate: translateY(-4px);
+
+    /* ==================== 响应式断点标准 ==================== */
+    /* 大屏: > 1200px - 默认样式,显示完整侧栏 */
+    /* 中屏: <= 1200px - 隐藏侧栏,单列布局 */
+    /* 平板: <= 1024px - 适度调整间距 */
+    /* 移动: <= 768px - 布局重构,简化样式 */
+    /* 小屏: <= 480px - 最小间距,优化触摸体验 */
+
     /* 背景 - 温暖的米白色（像优质纸张） */
     --theme: rgb(253, 251, 247);           /* #FDFBF7 */
 
@@ -50,6 +86,22 @@
     --code-block-bg: rgb(46, 46, 51);
     --code-bg: rgb(55, 56, 62);
     --border: rgb(51, 51, 51);
+
+    /* 深色模式阴影 */
+    --shadow-card:
+        0 1px 3px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(65, 66, 68, 0.3);
+
+    --shadow-card-hover:
+        0 16px 32px rgba(0, 0, 0, 0.6),
+        0 8px 16px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(155, 156, 157, 0.2),
+        0 0 40px rgba(65, 66, 68, 0.4);
+
+    --shadow-card-active:
+        0 2px 8px rgba(0, 0, 0, 0.25),
+        0 1px 3px rgba(0, 0, 0, 0.2);
+
     color-scheme: dark;
 }
 
@@ -76,4 +128,35 @@ body {
 
 [data-theme="dark"] .list {
     background: var(--theme);
+}
+
+/* ==================== 全局动画定义 ==================== */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==================== 无障碍性 - Focus 状态 ==================== */
+/* 为所有交互元素添加键盘导航的 focus 状态 */
+.post-entry:focus-within,
+.archive-entry:focus-within,
+.friend-card:focus,
+.terms-tags a:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+    transition: outline-color 0.15s ease;
+}
+
+/* 鼠标用户隐藏 outline (仅对键盘导航显示) */
+.post-entry:focus-within:not(:focus-visible),
+.archive-entry:focus-within:not(:focus-visible),
+.friend-card:focus:not(:focus-visible),
+.terms-tags a:focus:not(:focus-visible) {
+    outline: none;
 }
