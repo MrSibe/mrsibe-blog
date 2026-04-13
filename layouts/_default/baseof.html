@@ -26,8 +26,8 @@
         {{- end }}
         {{ partialCached "header.html" . .Page -}}
 
-        {{- /* 判断是否需要显示侧边栏 */ -}}
-        {{- $hideSidebar := or (eq .Layout "archives") (eq .Type "categories") (eq .Type "tags") (in .RelPermalink "/links/") (eq .Type "posts") -}}
+        {{- /* 判断是否需要隐藏侧边栏（归档、分类、标签、友链页面） */ -}}
+        {{- $hideSidebar := or (eq .Layout "archives") (eq .Type "categories") (eq .Type "tags") (in .RelPermalink "/links/") -}}
 
         {{- if eq .Kind "home" }}
             {{- /* 首页特殊布局：欢迎信息全宽 + 下方三列布局 */ -}}
@@ -61,6 +61,11 @@
                 <main class="main">
                     {{- block "main" . }}{{ end }}
                 </main>
+
+                {{- /* 右侧边栏：文章目录 - 仅在文章页面显示 */ -}}
+                {{- if eq .Kind "page" }}
+                    {{- partial "sidebar-right.html" . -}}
+                {{- end }}
             </div>
         {{- end }}
 

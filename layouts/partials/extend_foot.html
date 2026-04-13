@@ -5,3 +5,11 @@
 {{ if $smartHeaderScript }}
 <script src="{{ $smartHeaderScript.RelPermalink }}" defer></script>
 {{- end }}
+
+{{- /* TOC Scrollspy - 仅在文章页面且有 TOC 时加载 */ -}}
+{{- if and (eq .Kind "page") (.Param "ShowToc") }}
+{{ $tocScrollspyScript := resources.Get "js/toc-scrollspy.js" }}
+{{ if $tocScrollspyScript }}
+<script src="{{ $tocScrollspyScript.RelPermalink }}" defer></script>
+{{- end }}
+{{- end }}

@@ -1,0 +1,22 @@
+{{- /* 右侧边栏：文章目录 (TOC) */ -}}
+{{- if .Param "ShowToc" }}
+<aside class="sidebar-right">
+    <div class="sidebar-toc-wrapper sidebar-section">
+        {{- /* TOC 标题 */ -}}
+        <div class="sidebar-title-wrapper">
+            <h3 class="sidebar-title-inline">文章目录</h3>
+        </div>
+
+        {{- /* TOC 内容 - 添加 .toc class 以应用样式 */ -}}
+        <div class="toc">
+            <div class="inner">
+                {{- if (.Param "UseHugoToc") }}
+                    {{- .TableOfContents -}}
+                {{- else }}
+                    {{- partial "toc.html" . -}}
+                {{- end }}
+            </div>
+        </div>
+    </div>
+</aside>
+{{- end }}

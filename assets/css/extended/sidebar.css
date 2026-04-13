@@ -28,6 +28,50 @@
   align-self: start;
 }
 
+/* ==================== 右侧边栏 - 文章目录 ==================== */
+.sidebar-right {
+  /* 基础宽度 280px */
+  flex: 0 1 280px;
+  min-width: 240px;
+  max-width: 320px;
+  padding: 0 16px; /* 左右 padding，上下为 0 以留空间给渐变 */
+  position: sticky;
+  top: var(--gap);
+  align-self: start;
+  max-height: calc(100vh - var(--header-height) - var(--gap) * 2);
+  overflow-y: auto;
+  overflow-x: hidden; /* 禁止左右滚动 */
+
+  /* 使用 mask 实现上下渐变模糊效果 - 只在上下边缘 */
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 3%,    /* 更快过渡到完全可见 */
+    black 97%,   /* 保持中间区域完全可见 */
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 3%,
+    black 97%,
+    transparent 100%
+  );
+
+  /* 禁用左右方向的任何模糊效果 */
+  mask-repeat: no-repeat;
+  mask-size: 100% 100%; /* 确保遮罩完全覆盖容器 */
+}
+
+/* TOC 容器样式调整 - 去除卡片效果 */
+.sidebar-toc-wrapper.sidebar-section {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  padding: 40px 0; /* 上下留出渐变过渡空间 */
+}
+
 /* 个人简介卡片 */
 .profile-card {
   background: var(--entry);
@@ -360,7 +404,14 @@ body > .main {
 
 /* ==================== 响应式设计 ==================== */
 
-/* 中小屏设备 (<=1200px): 隐藏左侧边栏，切换到单列布局 */
+/* 中等屏幕 (<=1400px): 隐藏右侧边栏，保持两列布局 */
+@media screen and (max-width: 1400px) {
+  .sidebar-right {
+    display: none;
+  }
+}
+
+/* 小屏幕设备 (<=1200px): 隐藏左侧边栏，切换到单列布局 */
 @media screen and (max-width: 1200px) {
   .sidebar-left {
     display: none;
@@ -514,6 +565,68 @@ body > .main {
   transform: rotate(-135deg);
 }
 
+/* ==================== 右侧边栏 TOC 特殊样式 ==================== */
+/* 去除标题的卡片样式 */
+.sidebar-right .sidebar-title-wrapper {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin-bottom: 12px;
+}
+
+.sidebar-right .sidebar-title-inline {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--primary);
+  margin: 0;
+}
+
+/* 优化一级标题样式 */
+.sidebar-right .toc ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* 右侧边栏 TOC 链接样式 - 去除左右位移动画 */
+.sidebar-right .sidebar-toc-wrapper .toc a {
+  display: block;
+  padding: 6px 10px;
+  border-radius: 4px;
+  color: var(--content);
+  text-decoration: none;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease; /* 只保留背景和颜色过渡 */
+  font-size: 13px;
+  line-height: 1.6;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+/* 右侧边栏 TOC hover - 完全去除左右效果 */
+.sidebar-right .sidebar-toc-wrapper .toc a:hover {
+  background: var(--tertiary);
+  color: var(--primary);
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* 增强 active 状态样式 */
+.sidebar-right .sidebar-toc-wrapper .toc a.active {
+  background: var(--primary);
+  color: var(--theme);
+  font-weight: 600;
+  border-radius: 4px;
+  box-shadow: none !important;
+}
+
+/* 深色模式优化 */
+:root[data-theme="dark"] .sidebar-right .sidebar-toc-wrapper .toc a.active {
+  background: var(--primary);
+}
+
 /* 调整 inner 容器 */
 .sidebar-toc-wrapper .toc .inner {
   margin: 0;
@@ -555,19 +668,17 @@ body > .main {
     color 0.15s ease,
     transform 0.15s ease;
   font-size: 13px;
-  line-height: 1.5;
+  line-height: 1.6;
 
-  /* 文本溢出处理 */
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  /* 文字自动换行 */
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
 .sidebar-toc-wrapper .toc a:hover {
   background: var(--tertiary);
   color: var(--primary);
-  transform: translateX(4px);
-  box-shadow: none; /* 移除原有的下划线效果 */
+  box-shadow: none;
 }
 
 /* 当前活动章节样式（通过 JS 或 CSS Scrollspy 实现） */
