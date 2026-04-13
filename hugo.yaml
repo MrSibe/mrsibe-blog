@@ -40,10 +40,6 @@ minify:
   disableXML: false
 
 caches:
-  getcsv:
-    maxAge: 2h
-  getjson:
-    maxAge: 2h
   getresource:
     maxAge: 2h
   images:
