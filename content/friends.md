@@ -1,7 +1,7 @@
 ---
 title: "友情链接"
 type: "friends"
-url: "/links/"
+url: "/friends/"
 summary: "我的朋友们"
 ---
 

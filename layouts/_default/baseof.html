@@ -27,7 +27,7 @@
         {{ partialCached "header.html" . .Page -}}
 
         {{- /* 判断是否需要隐藏侧边栏（归档、分类、标签、友链页面） */ -}}
-        {{- $hideSidebar := or (eq .Layout "archives") (eq .Type "categories") (eq .Type "tags") (in .RelPermalink "/links/") -}}
+        {{- $hideSidebar := or (eq .Layout "archives") (eq .Type "categories") (eq .Type "tags") (in .RelPermalink "/friends/") -}}
 
         {{- if eq .Kind "home" }}
             {{- /* 首页特殊布局：欢迎信息全宽 + 下方三列布局 */ -}}
